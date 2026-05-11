@@ -76,9 +76,12 @@ public class Plugin : BaseUnityPlugin
     public static ConfigEntry<bool> Conf_InvertCourseRoll, DisableATAPKey;
     public static ConfigEntry<bool> DisableATAPGCAS, DisableATAPGUI, DisableATAPStick;
     public static ConfigEntry<bool> DisableNavAPKey, DisableNavAPStick, EnableNavonWP;
-    public static ConfigEntry<bool> KeepSetAltKey, KeepSetAltStick;
-    public static ConfigEntry<bool> UnlockMapPan, UnlockMapZoom, SaveMapZoom, UnpatchIfBroken;
-    public static ConfigEntry<bool> LockWingsSwept;
+    public static ConfigEntry<bool> KeepSetAltKey, KeepSetAltStick, UnpatchIfBroken;
+
+    // Map
+    public static ConfigEntry<bool> UnlockMapPan, UnlockMapZoom, SaveMapZoom;
+    // public static ConfigEntry<float> MinimapMinZoom, MinimapMaxZoom;
+    public static ConfigEntry<float> MinimapDefaultZoom;
 
     // Auto Jammer
     public static ConfigEntry<bool> EnableAutoJammer;
@@ -288,14 +291,16 @@ public class Plugin : BaseUnityPlugin
             "AP will use previously set alt instead of current alt when engaged by keyboard key");
         KeepSetAltStick = Config.Bind("Settings - Misc", "Keep set altitude when stick inputs made", true,
             "AP will not reset alt to current alt when stick inputs are made");
-        UnlockMapPan = Config.Bind("Settings - Misc", "Unlock Map Pan", true, "Requires restart to apply.");
-        UnlockMapZoom = Config.Bind("Settings - Misc", "Unlock Map Zoom", true, "Requires restart to apply.");
-        SaveMapZoom = Config.Bind("Settings - Misc", "Save Map Zoom", false,
-            "Prevent map from resetting zoom when reopened.");
         UnpatchIfBroken = Config.Bind("Settings - Misc", "Unpatch on error", true,
             "Unload this mod when it throws an error");
 
-        LockWingsSwept = Config.Bind("Settings - Misc²", "Lock swing wings in swept position", false, "For when you want your AB-4 to always look like a triangle. Will move all swing wings to the swept position.");
+        UnlockMapPan = Config.Bind("Settings - Map", "Unlock Map Pan", true, "Requires restart to apply.");
+        UnlockMapZoom = Config.Bind("Settings - Map", "Unlock Map Zoom", true, "Requires restart to apply.");
+        SaveMapZoom = Config.Bind("Settings - Map", "Save Map Zoom", false,
+            "Prevent map from resetting zoom when reopened.");
+        // MinimapMinZoom = Config.Bind("Settings - Map - Minimap", "Min Zoom", 0.01f, "Minimum zoom level");
+        // MinimapMaxZoom = Config.Bind("Settings - Map - Minimap", "Max Zoom", 100f, "Maximum zoom level");
+        MinimapDefaultZoom = Config.Bind("Settings - Map - Minimap", "Default Zoom", 1f, "Default zoom level");
 
         // nav
         NavReachDistance = Config.Bind("Settings - Navigation", "1. Reach Distance", 2500f,

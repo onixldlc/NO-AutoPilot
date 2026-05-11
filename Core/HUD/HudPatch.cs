@@ -6,6 +6,7 @@ using HarmonyLib;
 using JetBrains.Annotations;
 
 using NOAutopilot.Core.Flight;
+using NOAutopilot.Core.Map;
 
 using UnityEngine;
 
@@ -61,6 +62,7 @@ internal static class HudPatch
             APData.Reset();
             ControlOverridePatch.Reset();
             HUDVisualsPatch.Reset();
+            MinimapZoomPatch.Reset();
 
             APData.LocalAircraft = aircraft;
             APData.PlayerTransform = aircraft.transform;
@@ -83,11 +85,6 @@ internal static class HudPatch
                     Pilot.PilotType.Tiltwing => Plugin.EnableGCASTiltwing.Value,
                     _ => Plugin.EnableGCAS.Value
                 };
-            }
-
-            if (Plugin.LockWingsSwept.Value)
-            {
-                // todo?
             }
 
             Plugin.SyncMenuValues();
