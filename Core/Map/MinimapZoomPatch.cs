@@ -4,30 +4,17 @@ using HarmonyLib;
 
 using JetBrains.Annotations;
 
-// using Rewired;
-
 using UnityEngine;
 
 namespace NOAutopilot.Core.Map;
 
-[HarmonyPatch(typeof(DynamicMap), "CenterMinimizedMap")]
+[HarmonyPatch(typeof(DynamicMap), "Minimize")]
 internal static class MinimapZoomPatch
 {
-    private static float s_minimapZoom = 1f;
-    // private static Player s_player;
-
-    // private static float MinZoom => Plugin.MinimapMinZoom?.Value ?? 0.01f;
-    // private static float MaxZoom => Plugin.MinimapMaxZoom?.Value ?? 100f;
-    // private const float ZoomSpeed = 0.05f;
     private const float BaseScale = 2f;
 
-    public static void Reset()
-    {
-        s_minimapZoom = Plugin.MinimapDefaultZoom?.Value ?? 1f;
-    }
-
     [UsedImplicitly]
-    private static void Postfix(Transform ___mapScaleCenter)
+    private static void Postfix(GameObject ___mapImage)
     {
         if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
         {
@@ -36,38 +23,15 @@ internal static class MinimapZoomPatch
 
         try
         {
-            if (___mapScaleCenter == null)
+            if (___mapImage == null)
             {
                 return;
             }
 
-            if (DynamicMap.mapMaximized)
-            {
-                return;
-            }
+            float zoom = Plugin.MinimapDefaultZoom?.Value ?? 1f;
+            float scale = BaseScale * zoom;
 
-            CombatHUD hud = SceneSingleton<CombatHUD>.i;
-            if (hud == null || hud.aircraft?.disabled != false)
-            {
-                return;
-            }
-
-            // s_player ??= ReInput.players.GetPlayer(0);
-
-            // if (s_player == null)
-            // {
-            //     return;
-            // }
-
-            // float zoomInput = s_player.GetAxis("Zoom View");
-            // if (zoomInput != 0f)
-            // {
-            //     s_minimapZoom *= 1f + (zoomInput * ZoomSpeed);
-            //     s_minimapZoom = Mathf.Clamp(s_minimapZoom, MinZoom, MaxZoom);
-            // }
-
-            float scale = BaseScale * s_minimapZoom;
-            ___mapScaleCenter.localScale = Vector3.one * scale;
+            ___mapImage.transform.localScale = Vector3.one * scale;
         }
         catch (Exception ex)
         {
