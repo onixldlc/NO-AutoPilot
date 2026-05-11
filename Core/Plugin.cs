@@ -82,6 +82,7 @@ public class Plugin : BaseUnityPlugin
     public static ConfigEntry<bool> UnlockMapPan, UnlockMapZoom, SaveMapZoom;
     // public static ConfigEntry<float> MinimapMinZoom, MinimapMaxZoom;
     public static ConfigEntry<float> MinimapDefaultZoom;
+    public static ConfigEntry<bool> EnableMinimapLayoutPatch;
     public static ConfigEntry<bool> HideMinimapPanel;
     public static ConfigEntry<bool> DisableMinimapPanelMask;
     public static ConfigEntry<bool> ClampMinimapToScreen;
@@ -306,17 +307,19 @@ public class Plugin : BaseUnityPlugin
             "Prevent map from resetting zoom when reopened.");
         // MinimapMinZoom = Config.Bind("Settings - Map - Minimap", "Minimap Min Zoom", 0.01f, "Minimum zoom level");
         // MinimapMaxZoom = Config.Bind("Settings - Map - Minimap", "Minimap Max Zoom", 100f, "Maximum zoom level");
-        MinimapDefaultZoom = Config.Bind("Settings - Map - Minimap", "Minimap Default Zoom", 1f, "Default zoom level");
+        MinimapDefaultZoom = Config.Bind("Settings - Map - Minimap", "Default Zoom", 1f, "Default zoom level, separate from the other minimap settings.");
 
-        HideMinimapPanel = Config.Bind("Settings - Map - Minimap", "Minimap Hide Panel", false, "Hide the dark background behind the minimap.");
+        EnableMinimapLayoutPatch = Config.Bind("Settings - Map - Minimap", "Enable Layout Patch", false, "Enable the minimap layout patch, allows you to use the values below. Probably needs a restart to disable.");
+
+        HideMinimapPanel = Config.Bind("Settings - Map - Minimap", "Minimap Hide Panel", true, "Hide the dark background behind the minimap.");
 
         DisableMinimapPanelMask = Config.Bind("Settings - Map - Minimap", "Minimap Disable Panel Mask", true, "Disable Mask/RectMask2D on LowerLeftPanel so the minimap is not clipped by the panel.");
 
         ClampMinimapToScreen = Config.Bind("Settings - Map - Minimap", "Minimap Clamp To Screen", true, "Keep the minimap on screen.");
 
-        MinimapSize = Config.Bind("Settings - Map - Minimap", "Minimap Size", 0f, "Minimap size in UI units. 0 to disable.");
+        MinimapSize = Config.Bind("Settings - Map - Minimap", "Minimap Size", 1080f, "Minimap size in UI units. 0 to disable.");
 
-        MinimapOffsetX = Config.Bind("Settings - Map - Minimap", "Minimap Offset X", 0f, "Horizontal minimap offset in UI units.");
+        MinimapOffsetX = Config.Bind("Settings - Map - Minimap", "Minimap Offset X", 99999f, "Horizontal minimap offset in UI units.");
 
         MinimapOffsetY = Config.Bind("Settings - Map - Minimap", "Minimap Offset Y", 0f, "Vertical minimap offset in UI units.");
 
