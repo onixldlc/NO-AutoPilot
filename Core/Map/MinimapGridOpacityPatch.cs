@@ -10,7 +10,6 @@ using UnityEngine.UI;
 
 namespace NOAutopilot.Core.Map;
 
-[HarmonyPatch(typeof(GridLabels), "LateUpdate")]
 internal static class MinimapGridOpacityPatch
 {
     private static readonly List<Graphic> CachedGraphics = [];
@@ -24,53 +23,6 @@ internal static class MinimapGridOpacityPatch
         s_lastInstance = null;
     }
 
-    [UsedImplicitly]
-    private static void Postfix(
-        GridLabels __instance,
-        GameObject ___majorParent,
-        GameObject ___minorParent,
-        GameObject[] ___gridImages,
-        Text ___gridToolTip,
-        Text ___gridAircraft)
-    {
-        if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
-        {
-            return;
-        }
-
-        try
-        {
-            float opacity = Mathf.Clamp01(Plugin.MinimapGridOpacity?.Value ?? 1f);
-
-            // Re-cache if instance changed or cache is empty
-            if (__instance != s_lastInstance || CachedGraphics.Count == 0)
-            {
-                RebuildCache(
-                    __instance,
-                    ___majorParent,
-                    ___minorParent,
-                    ___gridImages,
-                    ___gridToolTip,
-                    ___gridAircraft);
-                s_lastAppliedOpacity = -1f; // force re-apply
-            }
-
-            // Only update colors when the config value actually changed
-            if (Mathf.Approximately(opacity, s_lastAppliedOpacity))
-            {
-                return;
-            }
-
-            s_lastAppliedOpacity = opacity;
-            ApplyOpacity(opacity);
-        }
-        catch (Exception ex)
-        {
-            Plugin.Logger.LogError($"[MinimapGridOpacityPatch] Error: {ex}");
-            Plugin.IsBroken = true;
-        }
-    }
-
     private static void RebuildCache(
         GridLabels instance,
         GameObject majorParent,
@@ -82,7 +34,6 @@ internal static class MinimapGridOpacityPatch
         CachedGraphics.Clear();
         s_lastInstance = instance;
 
-        // Collect all Text components from major/minor label parents
         majorParent?.GetComponentsInChildren(true, CachedGraphics);
 
         if (minorParent != null)
@@ -92,7 +43,6 @@ internal static class MinimapGridOpacityPatch
             CachedGraphics.AddRange(minorGraphics);
         }
 
-        // Collect grid line images
         if (gridImages != null)
         {
             foreach (GameObject gridObj in gridImages)
@@ -108,7 +58,6 @@ internal static class MinimapGridOpacityPatch
             }
         }
 
-        // Include tooltip and aircraft grid text
         if (gridToolTip != null)
         {
             CachedGraphics.Add(gridToolTip);
@@ -122,6 +71,9 @@ internal static class MinimapGridOpacityPatch
 
     private static void ApplyOpacity(float opacity)
     {
+        opacity = Mathf.Clamp01(opacity);
+        s_lastAppliedOpacity = opacity;
+
         for (int i = CachedGraphics.Count - 1; i >= 0; i--)
         {
             Graphic graphic = CachedGraphics[i];
@@ -134,6 +86,103 @@ internal static class MinimapGridOpacityPatch
             Color c = graphic.color;
             c.a = opacity;
             graphic.color = c;
+        }
+    }
+
+    [HarmonyPatch(typeof(GridLabels), "LateUpdate")]
+    internal static class ApplyOnLateUpdate
+    {
+        [UsedImplicitly]
+        private static void Postfix(
+            GridLabels __instance,
+            GameObject ___majorParent,
+            GameObject ___minorParent,
+            GameObject[] ___gridImages,
+            Text ___gridToolTip,
+            Text ___gridAircraft)
+        {
+            if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
+            {
+                return;
+            }
+
+            try
+            {
+                if (DynamicMap.mapMaximized)
+                {
+                    return;
+                }
+
+                if (__instance != s_lastInstance || CachedGraphics.Count == 0)
+                {
+                    RebuildCache(
+                        __instance,
+                        ___majorParent,
+                        ___minorParent,
+                        ___gridImages,
+                        ___gridToolTip,
+                        ___gridAircraft);
+                }
+
+                float opacity = Plugin.MinimapGridOpacity?.Value ?? 1f;
+
+                if (!Mathf.Approximately(opacity, s_lastAppliedOpacity))
+                {
+                    ApplyOpacity(opacity);
+                }
+            }
+            catch (Exception ex)
+            {
+                Plugin.Logger.LogError($"[MinimapGridOpacityPatch] LateUpdate error: {ex}");
+                Plugin.IsBroken = true;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(DynamicMap), "Maximize")]
+    internal static class RestoreOnMaximize
+    {
+        [UsedImplicitly]
+        private static void Postfix()
+        {
+            if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
+            {
+                return;
+            }
+
+            try
+            {
+                ApplyOpacity(1f);
+            }
+            catch (Exception ex)
+            {
+                Plugin.Logger.LogError($"[MinimapGridOpacityPatch] Maximize error: {ex}");
+                Plugin.IsBroken = true;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(DynamicMap), "Minimize")]
+    internal static class ApplyOnMinimize
+    {
+        [UsedImplicitly]
+        private static void Postfix()
+        {
+            if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
+            {
+                return;
+            }
+
+            try
+            {
+                float opacity = Plugin.MinimapGridOpacity?.Value ?? 1f;
+                ApplyOpacity(opacity);
+            }
+            catch (Exception ex)
+            {
+                Plugin.Logger.LogError($"[MinimapGridOpacityPatch] Minimize error: {ex}");
+                Plugin.IsBroken = true;
+            }
         }
     }
 }

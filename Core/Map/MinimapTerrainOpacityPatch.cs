@@ -9,7 +9,6 @@ using UnityEngine.UI;
 
 namespace NOAutopilot.Core.Map;
 
-[HarmonyPatch(typeof(DynamicMap), "CenterMinimizedMap")]
 internal static class MinimapTerrainOpacityPatch
 {
     private static Image s_terrainImage;
@@ -17,53 +16,6 @@ internal static class MinimapTerrainOpacityPatch
     public static void Reset()
     {
         s_terrainImage = null;
-    }
-
-    [UsedImplicitly]
-    private static void Postfix(
-        DynamicMap __instance,
-        GameObject ___mapImage)
-    {
-        if (Plugin.EnableMinimapLayoutPatch?.Value == false)
-        {
-            return;
-        }
-
-        if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
-        {
-            return;
-        }
-
-        try
-        {
-            if (DynamicMap.mapMaximized)
-            {
-                return;
-            }
-
-            if (__instance == null || ___mapImage == null)
-            {
-                return;
-            }
-
-            CombatHUD hud = SceneSingleton<CombatHUD>.i;
-            if (hud == null || hud.aircraft?.disabled != false)
-            {
-                return;
-            }
-
-            if (!TryCacheTerrainImage(___mapImage))
-            {
-                return;
-            }
-
-            ApplyTerrainOpacity();
-        }
-        catch (Exception ex)
-        {
-            Plugin.Logger.LogError($"[MinimapTerrainOpacityPatch] Error: {ex}");
-            Plugin.IsBroken = true;
-        }
     }
 
     private static bool TryCacheTerrainImage(GameObject mapImage)
@@ -84,18 +36,114 @@ internal static class MinimapTerrainOpacityPatch
         return true;
     }
 
-    private static void ApplyTerrainOpacity()
+    private static void SetOpacity(float opacity)
     {
         if (s_terrainImage == null)
         {
             return;
         }
 
-        float opacity = Plugin.MinimapTerrainOpacity?.Value ?? 0.1f;
-        opacity = Mathf.Clamp01(opacity);
-
         Color c = s_terrainImage.color;
-        c.a = opacity;
+        c.a = Mathf.Clamp01(opacity);
         s_terrainImage.color = c;
+    }
+
+    [HarmonyPatch(typeof(DynamicMap), "CenterMinimizedMap")]
+    internal static class ApplyOnMinimizedUpdate
+    {
+        [UsedImplicitly]
+        private static void Postfix(GameObject ___mapImage)
+        {
+            if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
+            {
+                return;
+            }
+
+            try
+            {
+                if (DynamicMap.mapMaximized || ___mapImage == null)
+                {
+                    return;
+                }
+
+                if (!TryCacheTerrainImage(___mapImage))
+                {
+                    return;
+                }
+
+                SetOpacity(Plugin.MinimapTerrainOpacity?.Value ?? 1f);
+            }
+            catch (Exception ex)
+            {
+                Plugin.Logger.LogError($"[MinimapTerrainOpacityPatch] CenterMinimizedMap error: {ex}");
+                Plugin.IsBroken = true;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(DynamicMap), "Maximize")]
+    internal static class RestoreOnMaximize
+    {
+        [UsedImplicitly]
+        private static void Postfix(GameObject ___mapImage)
+        {
+            if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
+            {
+                return;
+            }
+
+            try
+            {
+                if (___mapImage == null)
+                {
+                    return;
+                }
+
+                if (!TryCacheTerrainImage(___mapImage))
+                {
+                    return;
+                }
+
+                SetOpacity(1f);
+            }
+            catch (Exception ex)
+            {
+                Plugin.Logger.LogError($"[MinimapTerrainOpacityPatch] Maximize error: {ex}");
+                Plugin.IsBroken = true;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(DynamicMap), "Minimize")]
+    internal static class ApplyOnMinimize
+    {
+        [UsedImplicitly]
+        private static void Postfix(GameObject ___mapImage)
+        {
+            if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
+            {
+                return;
+            }
+
+            try
+            {
+                if (___mapImage == null)
+                {
+                    return;
+                }
+
+                if (!TryCacheTerrainImage(___mapImage))
+                {
+                    return;
+                }
+
+                SetOpacity(Plugin.MinimapTerrainOpacity?.Value ?? 1f);
+            }
+            catch (Exception ex)
+            {
+                Plugin.Logger.LogError($"[MinimapTerrainOpacityPatch] Minimize error: {ex}");
+                Plugin.IsBroken = true;
+            }
+        }
     }
 }

@@ -317,11 +317,11 @@ public class Plugin : BaseUnityPlugin
 
         ClampMinimapToScreen = Config.Bind("Settings - Map - Minimap", "05. Clamp to window", true, "Keep the minimap on screen.");
 
-        MinimapSize = Config.Bind("Settings - Map - Minimap", "06. Size", 1080f, "Minimap size in UI units. 0 to disable.");
+        MinimapSize = Config.Bind("Settings - Map - Minimap", "06. Size", 3840f, "Minimap size in UI units. 0 to disable.");
 
-        MinimapOffsetX = Config.Bind("Settings - Map - Minimap", "07. Offset X", 99999f, "Horizontal minimap offset in UI units.");
+        MinimapOffsetX = Config.Bind("Settings - Map - Minimap", "07. Offset X", 900f, "Horizontal minimap offset in UI units.");
 
-        MinimapOffsetY = Config.Bind("Settings - Map - Minimap", "08. Offset Y", 0f, "Vertical minimap offset in UI units.");
+        MinimapOffsetY = Config.Bind("Settings - Map - Minimap", "08. Offset Y", 400f, "Vertical minimap offset in UI units.");
 
         MinimapTerrainOpacity = Config.Bind("Settings - Map - Minimap", "09. Terrain Opacity", 0.1f, "Terrain opacity on the minimap.");
 
