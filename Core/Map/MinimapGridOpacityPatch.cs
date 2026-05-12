@@ -13,13 +13,11 @@ namespace NOAutopilot.Core.Map;
 internal static class MinimapGridOpacityPatch
 {
     private static readonly List<Graphic> CachedGraphics = [];
-    private static float s_lastAppliedOpacity = -1f;
     private static GridLabels s_lastInstance;
 
     public static void Reset()
     {
         CachedGraphics.Clear();
-        s_lastAppliedOpacity = -1f;
         s_lastInstance = null;
     }
 
@@ -72,7 +70,6 @@ internal static class MinimapGridOpacityPatch
     private static void ApplyOpacity(float opacity)
     {
         opacity = Mathf.Clamp01(opacity);
-        s_lastAppliedOpacity = opacity;
 
         for (int i = CachedGraphics.Count - 1; i >= 0; i--)
         {
@@ -135,11 +132,7 @@ internal static class MinimapGridOpacityPatch
                 }
 
                 float opacity = Plugin.MinimapGridOpacity?.Value ?? 1f;
-
-                if (!Mathf.Approximately(opacity, s_lastAppliedOpacity))
-                {
-                    ApplyOpacity(opacity);
-                }
+                ApplyOpacity(opacity);
             }
             catch (Exception ex)
             {
@@ -185,12 +178,34 @@ internal static class MinimapGridOpacityPatch
 
             try
             {
-                float opacity = Plugin.MinimapGridOpacity?.Value ?? 1f;
-                ApplyOpacity(opacity);
+                ApplyOpacity(Plugin.MinimapGridOpacity?.Value ?? 1f);
             }
             catch (Exception ex)
             {
                 Plugin.Logger.LogError($"[MinimapGridOpacityPatch] Minimize error: {ex}");
+                Plugin.IsBroken = true;
+            }
+        }
+    }
+
+    [HarmonyPatch(typeof(DynamicMap), "LoadMapImage")]
+    internal static class ApplyOnLoadMapImage
+    {
+        [UsedImplicitly]
+        private static void Postfix()
+        {
+            if (Plugin.IsBroken && Plugin.UnpatchIfBroken.Value)
+            {
+                return;
+            }
+
+            try
+            {
+                s_lastInstance = null;
+            }
+            catch (Exception ex)
+            {
+                Plugin.Logger.LogError($"[MinimapGridOpacityPatch] LoadMapImage error: {ex}");
                 Plugin.IsBroken = true;
             }
         }

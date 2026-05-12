@@ -65,6 +65,12 @@ internal static class MinimapTerrainOpacityPatch
             {
                 Reset();
 
+                DynamicMap map = SceneSingleton<DynamicMap>.i;
+                if (map?.mapImage != null)
+                {
+                    s_terrainImage = map.mapImage.GetComponent<Image>();
+                }
+
                 if (!DynamicMap.mapMaximized)
                 {
                     ApplyOpacity(Plugin.MinimapTerrainOpacity?.Value ?? 1f);

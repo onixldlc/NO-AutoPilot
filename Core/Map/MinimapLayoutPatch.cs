@@ -20,8 +20,8 @@ internal static class MinimapLayoutPatch
     private static Mask s_panelMask;
     private static RectMask2D s_panelRectMask;
     private static RectTransform s_canvasRect;
-
     private static Vector2? s_baseHudMapAnchorPos;
+    private const string BaseMarkerName = "NOA_MinimapBase";
 
     public static void Reset()
     {
@@ -86,19 +86,48 @@ internal static class MinimapLayoutPatch
         }
     }
 
-    private static bool TryCacheRefs(GameObject hudMapAnchor)
+    private static Vector2 GetOrCreateBasePosition(RectTransform hudMapAnchorRect)
     {
-        s_hudMapAnchorRect ??= hudMapAnchor.GetComponent<RectTransform>();
+        Transform existing = hudMapAnchorRect.Find(BaseMarkerName);
+        RectTransform marker;
 
-        if (s_hudMapAnchorRect == null)
+        if (existing == null)
         {
-            Plugin.Logger.LogWarning("[MinimapLayoutPatch] HUDMapAnchor RectTransform not found");
-            return false;
+            GameObject go = new(BaseMarkerName, typeof(RectTransform));
+            marker = go.GetComponent<RectTransform>();
+            marker.SetParent(hudMapAnchorRect, false);
+            marker.anchorMin = Vector2.zero;
+            marker.anchorMax = Vector2.zero;
+            marker.pivot = Vector2.zero;
+            marker.sizeDelta = Vector2.zero;
+
+            marker.anchoredPosition = hudMapAnchorRect.anchoredPosition;
+        }
+        else
+        {
+            marker = (RectTransform)existing;
         }
 
-        if (s_baseHudMapAnchorPos == null)
+        return marker.anchoredPosition;
+    }
+
+    private static bool TryCacheRefs(GameObject hudMapAnchor)
+    {
+        if (s_hudMapAnchorRect == null || s_hudMapAnchorRect.gameObject != hudMapAnchor)
         {
-            s_baseHudMapAnchorPos = s_hudMapAnchorRect.anchoredPosition;
+            s_hudMapAnchorRect = hudMapAnchor.GetComponent<RectTransform>();
+            if (s_hudMapAnchorRect == null)
+            {
+                Plugin.Logger.LogError("[MinimapLayoutPatch] HUDMapAnchor RectTransform not found");
+                Plugin.IsBroken = true;
+                return false;
+            }
+
+            s_baseHudMapAnchorPos = GetOrCreateBasePosition(s_hudMapAnchorRect);
+        }
+        else if (s_baseHudMapAnchorPos == null)
+        {
+            s_baseHudMapAnchorPos = GetOrCreateBasePosition(s_hudMapAnchorRect);
         }
 
         if (s_lowerLeftPanel == null)
@@ -106,7 +135,8 @@ internal static class MinimapLayoutPatch
             Transform parent = hudMapAnchor.transform.parent;
             if (parent == null || parent.name != "LowerLeftPanel")
             {
-                Plugin.Logger.LogWarning($"[MinimapLayoutPatch] Expected LowerLeftPanel, got '{parent?.name}'");
+                Plugin.Logger.LogError($"[MinimapLayoutPatch] Expected LowerLeftPanel, got '{parent?.name}'");
+                Plugin.IsBroken = true;
                 return false;
             }
 
@@ -198,10 +228,8 @@ internal static class MinimapLayoutPatch
 
         Canvas.ForceUpdateCanvases();
 
-        // Get the center of the minimap in world space
-        Vector3 mapCenter = mapRectTransform.position; // RectTransform.position is the pivot point (center by default)
+        Vector3 mapCenter = mapRectTransform.position;
 
-        // Get canvas bounds
         Vector3[] canvasCorners = new Vector3[4];
         canvasRect.GetWorldCorners(canvasCorners);
 
