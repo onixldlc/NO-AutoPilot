@@ -2,6 +2,8 @@
 // AUTO-GENERATED STUB by csstubgen — DO NOT EDIT
 // =============================================================================
 
+using System.Collections.Generic;
+
 public abstract class Element
 {
     public ControllerElementIdentifier elementIdentifier { get; }
@@ -61,7 +63,7 @@ namespace Rewired
 
     public enum ControllerType
     {
-        public static ControllerType Mouse;
+        Mouse
     }
 
     public class Joystick : ControllerWithAxes

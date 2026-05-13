@@ -3,6 +3,7 @@
 // =============================================================================
 
 using Mirage;
+using System.Collections.Generic;
 using UnityEngine;
 
 public static class CursorManager
@@ -285,27 +286,27 @@ public class JammingPod : Weapon
 
 public enum CursorFlags
 {
-    public static CursorFlags Chat;
+    Chat
 }
 
 public enum UnitSystem
 {
-    public static UnitSystem Imperial;
+    Imperial
 }
 
 public enum FactionMode
 {
-    public static FactionMode Friendly;
+    Friendly
 }
 
 public enum PilotType
 {
-    public static PilotType Helo;
-    public static PilotType Tiltwing;
+    Helo,
+    Tiltwing
 }
 
 public enum GearState
 {
-    public static GearState LockedRetracted;
+    LockedRetracted
 }
 
