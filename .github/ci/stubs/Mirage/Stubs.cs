@@ -2,6 +2,7 @@
 // AUTO-GENERATED STUB by csstubgen — DO NOT EDIT
 // =============================================================================
 
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Mirage
