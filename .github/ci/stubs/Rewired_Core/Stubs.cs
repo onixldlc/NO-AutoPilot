@@ -2,6 +2,8 @@
 // AUTO-GENERATED STUB by csstubgen — DO NOT EDIT
 // =============================================================================
 
+using Rewired;
+using Rewired.Utils.Classes;
 using System.Collections.Generic;
 
 public abstract class Element
