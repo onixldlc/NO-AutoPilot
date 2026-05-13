@@ -4,9 +4,7 @@
 
 using System;
 
-public class WindowFunction : MulticastDelegate
-{
-}
+public delegate void WindowFunction(int id);
 
 namespace UnityEngine
 {

@@ -382,9 +382,7 @@ namespace UnityEngine
 }
 namespace UnityEngine.Events
 {
-    public class UnityAction : MulticastDelegate
-    {
-    }
+    public delegate void UnityAction();
 
 }
 namespace UnityEngine.SceneManagement
