@@ -274,24 +274,43 @@ public class CameraCockpitState : CameraBaseState
     public override void UpdateState(CameraStateManager cam) { }
 }
 
+public class RunwayUsage
+{
+    public Runway Runway;
+}
+
+public class Runway
+{
+    public Airbase airbase;
+}
+
 public class AIPilotLandingState : PilotBaseState
 {
+    public RunwayUsage runwayUsage;
+    public bool touchedDown;
     public override void EnterState(Pilot pilot) { }
     public override void FixedUpdateState(Pilot pilot) { }
     public override void LeaveState() { }
     public override void UpdateState(Pilot pilot) { }
+    public void CheckApproachParameters() { }
+    public void SearchBestAirbase() { }
 }
 
 public class AIPilotShortLandingState : PilotBaseState
 {
+    public RunwayUsage runwayUsage;
+    public bool touchedDown;
     public override void EnterState(Pilot pilot) { }
     public override void FixedUpdateState(Pilot pilot) { }
     public override void LeaveState() { }
     public override void UpdateState(Pilot pilot) { }
+    public void CheckApproachParameters() { }
+    public void SearchBestAirbase() { }
 }
 
 public class AIPilotTaxiState : PilotBaseState
 {
+    public Airbase airbase;
     public override void EnterState(Pilot pilot) { }
     public override void FixedUpdateState(Pilot pilot) { }
     public override void LeaveState() { }
