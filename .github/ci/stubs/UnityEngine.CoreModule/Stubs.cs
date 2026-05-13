@@ -3,397 +3,117 @@
 // =============================================================================
 
 using System;
+using System;
 using System.Collections.Generic;
-using UnityEngine.SceneManagement;
+using UnityEngine;
+using UnityEngine.UI;
 
-namespace JetBrains.Annotations
+namespace UnityEngine.CoreModule
 {
-    public class UsedImplicitlyAttribute : Attribute
+    public class ColorUtility // UnityEngine.ColorUtility
     {
+        public static string ToHtmlStringRGBA(UnityEngine.Color color) { throw new System.NotImplementedException(); }
+        public static bool TryParseHtmlString(string htmlString, out UnityEngine.Color color) { throw new System.NotImplementedException(); }
     }
 
-}
-namespace UnityEngine
-{
-    public static class Random
+    public class Component // UnityEngine.Component
     {
-        public static float Range(float minInclusive, float maxInclusive)
-            => throw new System.NotImplementedException("Stub");
-        public static int Range(int minInclusive, int maxExclusive)
-            => throw new System.NotImplementedException("Stub");
+        public GLOC GetComponent() { throw new System.NotImplementedException(); }
     }
 
-    public class Object
+    public class GameObject // UnityEngine.GameObject
     {
-        public string name { get; set; }
-        public static void Destroy(Object obj, float t) { }
-        public static void Destroy(Object obj) { }
-        public static Object Instantiate(Object original, Vector3 position, Quaternion rotation)
-            => throw new System.NotImplementedException("Stub");
-        public static Object Instantiate(Object original, Vector3 position, Quaternion rotation, Transform parent)
-            => throw new System.NotImplementedException("Stub");
-        public static Object Instantiate(Object original)
-            => throw new System.NotImplementedException("Stub");
-        public static Object Instantiate(Object original, Scene scene)
-            => throw new System.NotImplementedException("Stub");
-        public static T Instantiate<T>(T original, InstantiateParameters parameters)
-            => throw new System.NotImplementedException("Stub");
-        public static T Instantiate<T>(T original, Vector3 position, Quaternion rotation, InstantiateParameters parameters)
-            => throw new System.NotImplementedException("Stub");
-        public static Object Instantiate(Object original, Transform parent)
-            => throw new System.NotImplementedException("Stub");
-        public static Object Instantiate(Object original, Transform parent, bool instantiateInWorldSpace)
-            => throw new System.NotImplementedException("Stub");
-        public static T Instantiate<T>(T original)
-            => throw new System.NotImplementedException("Stub");
-        public static T Instantiate<T>(T original, Vector3 position, Quaternion rotation)
-            => throw new System.NotImplementedException("Stub");
-        public static T Instantiate<T>(T original, Vector3 position, Quaternion rotation, Transform parent)
-            => throw new System.NotImplementedException("Stub");
-        public static T Instantiate<T>(T original, Transform parent)
-            => throw new System.NotImplementedException("Stub");
-        public static T Instantiate<T>(T original, Transform parent, bool worldPositionStays)
-            => throw new System.NotImplementedException("Stub");
+        public void GetComponentsInChildren(bool includeInactive, System.Collections.Generic.List<UnityEngine.UI.Graphic> results) { throw new System.NotImplementedException(); }
+        public GLOC GetComponent() { throw new System.NotImplementedException(); }
+        public UnityEngine.RectTransform GetComponent() { throw new System.NotImplementedException(); }
+        public UnityEngine.UI.Image GetComponent() { throw new System.NotImplementedException(); }
+        public UnityEngine.RectTransform GetComponent() { throw new System.NotImplementedException(); }
+        public UnityEngine.Canvas GetComponentInParent() { throw new System.NotImplementedException(); }
+        public bool TryGetComponent(out UnityEngine.UI.Image component) { throw new System.NotImplementedException(); }
+        public UnityEngine.UI.Image GetComponent() { throw new System.NotImplementedException(); }
+        public bool TryGetComponent(out UnityEngine.UI.Image component) { throw new System.NotImplementedException(); }
+        public void GetComponentsInChildren(bool includeInactive, System.Collections.Generic.List<UnityEngine.UI.Graphic> results) { throw new System.NotImplementedException(); }
+        public UnityEngine.UI.Text GetComponent() { throw new System.NotImplementedException(); }
+        public UnityEngine.UI.Text GetComponent() { throw new System.NotImplementedException(); }
+        public void SetActive(bool value) { throw new System.NotImplementedException(); }
+        public UnityEngine.UI.Text GetComponent() { throw new System.NotImplementedException(); }
+        public void SetActive(bool value) { throw new System.NotImplementedException(); }
+        public UnityEngine.UI.Text GetComponent() { throw new System.NotImplementedException(); }
+        public void SetActive(bool value) { throw new System.NotImplementedException(); }
+        public UnityEngine.UI.Text GetComponent() { throw new System.NotImplementedException(); }
+        public void SetActive(bool value) { throw new System.NotImplementedException(); }
     }
 
-    public class Time
+    public class Mathf // UnityEngine.Mathf
     {
-        public static float deltaTime
-            => throw new System.NotImplementedException("Stub");
-        public static float fixedDeltaTime { get; set; }
-        public static float realtimeSinceStartup
-            => throw new System.NotImplementedException("Stub");
-        public static float time
-            => throw new System.NotImplementedException("Stub");
+        public static float Abs(float f) { throw new System.NotImplementedException(); }
+        public static float Acos(float f) { throw new System.NotImplementedException(); }
+        public static bool Approximately(float a, float b) { throw new System.NotImplementedException(); }
+        public static float Asin(float f) { throw new System.NotImplementedException(); }
+        public static float Atan(float f) { throw new System.NotImplementedException(); }
+        public static float Atan2(float y, float x) { throw new System.NotImplementedException(); }
+        public static float Clamp(float value, float min, float max) { throw new System.NotImplementedException(); }
+        public static float Clamp01(float value) { throw new System.NotImplementedException(); }
+        public static float Cos(float f) { throw new System.NotImplementedException(); }
+        public static float DeltaAngle(float current, float target) { throw new System.NotImplementedException(); }
+        public static float Exp(float power) { throw new System.NotImplementedException(); }
+        public static float Lerp(float a, float b, float t) { throw new System.NotImplementedException(); }
+        public static float Max(float a, float b) { throw new System.NotImplementedException(); }
+        public static float Min(float a, float b) { throw new System.NotImplementedException(); }
+        public static float PerlinNoise(float x, float y) { throw new System.NotImplementedException(); }
+        public static float Pow(float f, float p) { throw new System.NotImplementedException(); }
+        public static float Repeat(float t, float length) { throw new System.NotImplementedException(); }
+        public static float Sqrt(float f) { throw new System.NotImplementedException(); }
     }
 
-    public class Screen
+    public class Object // UnityEngine.Object
     {
-        public static int height
-            => throw new System.NotImplementedException("Stub");
-        public static int width
-            => throw new System.NotImplementedException("Stub");
+        public static void Destroy(UnityEngine.Object obj) { throw new System.NotImplementedException(); }
+        public static UnityEngine.GameObject Instantiate(UnityEngine.GameObject original, UnityEngine.Transform parent) { throw new System.NotImplementedException(); }
     }
 
-    public class RectOffset
+    public class Quaternion // UnityEngine.Quaternion
     {
+        public static UnityEngine.Quaternion LookRotation(UnityEngine.Vector3 forward) { throw new System.NotImplementedException(); }
     }
 
-    public class ColorUtility
+    public class Random // UnityEngine.Random
     {
-        public static string ToHtmlStringRGBA(Color color)
-            => throw new System.NotImplementedException("Stub");
-        public static bool TryParseHtmlString(string htmlString, out Color color)
-            => throw new System.NotImplementedException("Stub");
+        public static float Range(float minInclusive, float maxInclusive) { throw new System.NotImplementedException(); }
     }
 
-    public struct Vector2
+    public class Rect // UnityEngine.Rect
     {
-        public float x;
-        public float y;
-        public static Vector2 one
-            => throw new System.NotImplementedException("Stub");
-        public float sqrMagnitude
-            => throw new System.NotImplementedException("Stub");
-        public static Vector2 zero
-            => throw new System.NotImplementedException("Stub");
-        public static float Distance(Vector2 a, Vector2 b)
-            => throw new System.NotImplementedException("Stub");
+        public bool Contains(UnityEngine.Vector2 point) { throw new System.NotImplementedException(); }
     }
 
-    public struct Color
+    public class RectTransform // UnityEngine.RectTransform
     {
-        public float a;
-        public float b;
-        public float g;
-        public float r;
-        public static Color cyan
-            => throw new System.NotImplementedException("Stub");
-        public static Color gray
-            => throw new System.NotImplementedException("Stub");
-        public static Color green
-            => throw new System.NotImplementedException("Stub");
-        public static Color red
-            => throw new System.NotImplementedException("Stub");
-        public static Color white
-            => throw new System.NotImplementedException("Stub");
-        public static Color yellow
-            => throw new System.NotImplementedException("Stub");
+        public void GetWorldCorners(UnityEngine.Vector3[] fourCornersArray) { throw new System.NotImplementedException(); }
+        public UnityEngine.Transform Find(string n) { throw new System.NotImplementedException(); }
+        public void SetParent(UnityEngine.Transform parent, bool worldPositionStays) { throw new System.NotImplementedException(); }
     }
 
-    public struct Vector3
+    public class Transform // UnityEngine.Transform
     {
-        public float x;
-        public float y;
-        public float z;
-        public float magnitude
-            => throw new System.NotImplementedException("Stub");
-        public Vector3 normalized
-            => throw new System.NotImplementedException("Stub");
-        public static Vector3 one
-            => throw new System.NotImplementedException("Stub");
-        public float sqrMagnitude
-            => throw new System.NotImplementedException("Stub");
-        public static Vector3 up
-            => throw new System.NotImplementedException("Stub");
-        public static Vector3 zero
-            => throw new System.NotImplementedException("Stub");
-        public static float Angle(Vector3 from, Vector3 to)
-            => throw new System.NotImplementedException("Stub");
-        public static float Distance(Vector3 a, Vector3 b)
-            => throw new System.NotImplementedException("Stub");
-        public static float Dot(Vector3 lhs, Vector3 rhs)
-            => throw new System.NotImplementedException("Stub");
-        public static Vector3 ProjectOnPlane(Vector3 vector, Vector3 planeNormal)
-            => throw new System.NotImplementedException("Stub");
+        public UnityEngine.Vector3 InverseTransformPoint(UnityEngine.Vector3 position) { throw new System.NotImplementedException(); }
+        public UnityEngine.Vector3 InverseTransformDirection(UnityEngine.Vector3 direction) { throw new System.NotImplementedException(); }
+        public UnityEngine.UI.Image GetComponent() { throw new System.NotImplementedException(); }
     }
 
-    public class GameObject : Object
+    public class Vector2 // UnityEngine.Vector2
     {
-        public bool activeSelf
-            => throw new System.NotImplementedException("Stub");
-        public Transform transform
-            => throw new System.NotImplementedException("Stub");
-        public T GetComponent<T>()
-            => throw new System.NotImplementedException("Stub");
-        public Component GetComponent(Type type)
-            => throw new System.NotImplementedException("Stub");
-        public Component GetComponent(string type)
-            => throw new System.NotImplementedException("Stub");
-        public Component GetComponentInParent(Type type, bool includeInactive)
-            => throw new System.NotImplementedException("Stub");
-        public Component GetComponentInParent(Type type)
-            => throw new System.NotImplementedException("Stub");
-        public T GetComponentInParent<T>()
-            => throw new System.NotImplementedException("Stub");
-        public T GetComponentInParent<T>(bool includeInactive)
-            => throw new System.NotImplementedException("Stub");
-        public Component[] GetComponentsInChildren(Type type)
-            => throw new System.NotImplementedException("Stub");
-        public Component[] GetComponentsInChildren(Type type, bool includeInactive)
-            => throw new System.NotImplementedException("Stub");
-        public T[] GetComponentsInChildren<T>(bool includeInactive)
-            => throw new System.NotImplementedException("Stub");
-        public void GetComponentsInChildren<T>(bool includeInactive, List<T> results) { }
-        public T[] GetComponentsInChildren<T>()
-            => throw new System.NotImplementedException("Stub");
-        public void GetComponentsInChildren<T>(List<T> results) { }
-        public void SetActive(bool value) { }
-        public bool TryGetComponent<T>(out T component)
-            => throw new System.NotImplementedException("Stub");
-        public bool TryGetComponent(Type type, out Component component)
-            => throw new System.NotImplementedException("Stub");
+        public static float Distance(UnityEngine.Vector2 a, UnityEngine.Vector2 b) { throw new System.NotImplementedException(); }
     }
 
-    public struct Mathf
+    public class Vector3 // UnityEngine.Vector3
     {
-        public static float Deg2Rad;
-        public static float Rad2Deg;
-        public static float Abs(float f)
-            => throw new System.NotImplementedException("Stub");
-        public static int Abs(int value)
-            => throw new System.NotImplementedException("Stub");
-        public static float Acos(float f)
-            => throw new System.NotImplementedException("Stub");
-        public static bool Approximately(float a, float b)
-            => throw new System.NotImplementedException("Stub");
-        public static float Asin(float f)
-            => throw new System.NotImplementedException("Stub");
-        public static float Atan(float f)
-            => throw new System.NotImplementedException("Stub");
-        public static float Atan2(float y, float x)
-            => throw new System.NotImplementedException("Stub");
-        public static float Clamp(float value, float min, float max)
-            => throw new System.NotImplementedException("Stub");
-        public static int Clamp(int value, int min, int max)
-            => throw new System.NotImplementedException("Stub");
-        public static float Clamp01(float value)
-            => throw new System.NotImplementedException("Stub");
-        public static float Cos(float f)
-            => throw new System.NotImplementedException("Stub");
-        public static float DeltaAngle(float current, float target)
-            => throw new System.NotImplementedException("Stub");
-        public static float Exp(float power)
-            => throw new System.NotImplementedException("Stub");
-        public static float Lerp(float a, float b, float t)
-            => throw new System.NotImplementedException("Stub");
-        public static float Max(float a, float b)
-            => throw new System.NotImplementedException("Stub");
-        public static float Max(float[] values)
-            => throw new System.NotImplementedException("Stub");
-        public static int Max(int a, int b)
-            => throw new System.NotImplementedException("Stub");
-        public static int Max(int[] values)
-            => throw new System.NotImplementedException("Stub");
-        public static float Min(float a, float b)
-            => throw new System.NotImplementedException("Stub");
-        public static float Min(float[] values)
-            => throw new System.NotImplementedException("Stub");
-        public static int Min(int a, int b)
-            => throw new System.NotImplementedException("Stub");
-        public static int Min(int[] values)
-            => throw new System.NotImplementedException("Stub");
-        public static float PerlinNoise(float x, float y)
-            => throw new System.NotImplementedException("Stub");
-        public static float Pow(float f, float p)
-            => throw new System.NotImplementedException("Stub");
-        public static float Repeat(float t, float length)
-            => throw new System.NotImplementedException("Stub");
-        public static float Sqrt(float f)
-            => throw new System.NotImplementedException("Stub");
-    }
-
-    public struct Rect
-    {
-        public float height { get; set; }
-        public float width { get; set; }
-        public float x { get; set; }
-        public float xMax { get; set; }
-        public float y { get; set; }
-        public float yMax { get; set; }
-        public bool Contains(Vector2 point)
-            => throw new System.NotImplementedException("Stub");
-        public bool Contains(Vector3 point)
-            => throw new System.NotImplementedException("Stub");
-        public bool Contains(Vector3 point, bool allowInverse)
-            => throw new System.NotImplementedException("Stub");
-    }
-
-    public struct Quaternion
-    {
-        public Vector3 eulerAngles { get; set; }
-        public static Quaternion identity
-            => throw new System.NotImplementedException("Stub");
-        public static Quaternion LookRotation(Vector3 forward, Vector3 upwards)
-            => throw new System.NotImplementedException("Stub");
-        public static Quaternion LookRotation(Vector3 forward)
-            => throw new System.NotImplementedException("Stub");
-    }
-
-    public class Component : Object
-    {
-        public GameObject gameObject
-            => throw new System.NotImplementedException("Stub");
-        public Transform transform
-            => throw new System.NotImplementedException("Stub");
-        public Component GetComponent(Type type)
-            => throw new System.NotImplementedException("Stub");
-        public T GetComponent<T>()
-            => throw new System.NotImplementedException("Stub");
-        public Component GetComponent(string type)
-            => throw new System.NotImplementedException("Stub");
-        public Component GetComponentInChildren(Type t, bool includeInactive)
-            => throw new System.NotImplementedException("Stub");
-        public Component GetComponentInChildren(Type t)
-            => throw new System.NotImplementedException("Stub");
-        public T GetComponentInChildren<T>(bool includeInactive)
-            => throw new System.NotImplementedException("Stub");
-        public T GetComponentInChildren<T>()
-            => throw new System.NotImplementedException("Stub");
-    }
-
-    public struct InstantiateParameters
-    {
-    }
-
-    public class Texture : Object
-    {
-    }
-
-    public class ScriptableObject : Object
-    {
-    }
-
-    public struct Ray
-    {
-    }
-
-    public class Transform : Component
-    {
-        public Vector3 eulerAngles { get; set; }
-        public Vector3 forward { get; set; }
-        public Vector3 localEulerAngles { get; set; }
-        public Vector3 localPosition { get; set; }
-        public Quaternion localRotation { get; set; }
-        public Vector3 localScale { get; set; }
-        public Transform parent { get; set; }
-        public Vector3 position { get; set; }
-        public Transform root
-            => throw new System.NotImplementedException("Stub");
-        public Vector3 up { get; set; }
-        public Transform Find(string n)
-            => throw new System.NotImplementedException("Stub");
-        public Vector3 InverseTransformDirection(Vector3 direction)
-            => throw new System.NotImplementedException("Stub");
-        public Vector3 InverseTransformDirection(float x, float y, float z)
-            => throw new System.NotImplementedException("Stub");
-        public Vector3 InverseTransformPoint(Vector3 position)
-            => throw new System.NotImplementedException("Stub");
-        public Vector3 InverseTransformPoint(float x, float y, float z)
-            => throw new System.NotImplementedException("Stub");
-        public void SetParent(Transform p) { }
-        public void SetParent(Transform parent, bool worldPositionStays) { }
-    }
-
-    public enum KeyCode
-    {
-        Backslash,
-        Delete,
-        DownArrow,
-        End,
-        Equals,
-        F8,
-        Home,
-        LeftArrow,
-        LeftBracket,
-        LeftControl,
-        LeftShift,
-        None,
-        PageDown,
-        PageUp,
-        Quote,
-        RightArrow,
-        RightBracket,
-        RightShift,
-        Semicolon,
-        Slash,
-        UpArrow
-    }
-
-    public class Behaviour : Component
-    {
-        public bool enabled { get; set; }
-    }
-
-    public class RectTransform : Transform
-    {
-        public Vector2 anchoredPosition { get; set; }
-        public Vector2 anchorMax { get; set; }
-        public Vector2 anchorMin { get; set; }
-        public Vector2 pivot { get; set; }
-        public Vector2 sizeDelta { get; set; }
-        public void GetWorldCorners(Vector3[] fourCornersArray) { }
-    }
-
-    public class MonoBehaviour : Behaviour
-    {
-    }
-
-}
-namespace UnityEngine.Events
-{
-    public delegate void UnityAction();
-
-}
-namespace UnityEngine.SceneManagement
-{
-    public class SceneManager
-    {
-    }
-
-    public struct Scene
-    {
-        public string name { get; set; }
+        public static float Angle(UnityEngine.Vector3 from, UnityEngine.Vector3 to) { throw new System.NotImplementedException(); }
+        public static float Distance(UnityEngine.Vector3 a, UnityEngine.Vector3 b) { throw new System.NotImplementedException(); }
+        public static float Dot(UnityEngine.Vector3 lhs, UnityEngine.Vector3 rhs) { throw new System.NotImplementedException(); }
+        public static UnityEngine.Vector3 ProjectOnPlane(UnityEngine.Vector3 vector, UnityEngine.Vector3 planeNormal) { throw new System.NotImplementedException(); }
+        public float GlobalY() { throw new System.NotImplementedException(); }
+        public GlobalPosition ToGlobalPosition() { throw new System.NotImplementedException(); }
     }
 
 }

@@ -8,7 +8,4 @@
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
     <NoWarn>CS0649;CS0169;CS0414;CS0626</NoWarn>
   </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UnityEngine.CoreModule\UnityEngine.CoreModule.csproj" />
-  </ItemGroup>
 </Project>

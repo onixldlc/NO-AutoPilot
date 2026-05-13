@@ -3,12 +3,15 @@
 // =============================================================================
 
 using System;
+using System;
+using UnityEngine;
 
-namespace UnityEngine
+namespace UnityEngine.UIModule
 {
-    public class Canvas : Behaviour
+    public class Canvas // UnityEngine.Canvas
     {
-        public static void ForceUpdateCanvases() { }
+        public static void ForceUpdateCanvases() { throw new System.NotImplementedException(); }
+        public UnityEngine.RectTransform GetComponent() { throw new System.NotImplementedException(); }
     }
 
 }

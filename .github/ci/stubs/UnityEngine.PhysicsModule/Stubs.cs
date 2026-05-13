@@ -3,54 +3,14 @@
 // =============================================================================
 
 using System;
+using System;
+using UnityEngine;
 
-namespace UnityEngine
+namespace UnityEngine.PhysicsModule
 {
-    public class Rigidbody : Component
+    public class Physics // UnityEngine.Physics
     {
-        public Vector3 angularVelocity { get; set; }
-        public Vector3 position { get; set; }
-        public Vector3 velocity { get; set; }
-    }
-
-    public class Physics
-    {
-        public static bool SphereCast(Vector3 origin, float radius, Vector3 direction, out RaycastHit hitInfo, float maxDistance, int layerMask, QueryTriggerInteraction queryTriggerInteraction)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Vector3 origin, float radius, Vector3 direction, out RaycastHit hitInfo, float maxDistance, int layerMask)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Vector3 origin, float radius, Vector3 direction, out RaycastHit hitInfo, float maxDistance)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Vector3 origin, float radius, Vector3 direction, out RaycastHit hitInfo)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Ray ray, float radius, float maxDistance, int layerMask, QueryTriggerInteraction queryTriggerInteraction)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Ray ray, float radius, float maxDistance, int layerMask)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Ray ray, float radius, float maxDistance)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Ray ray, float radius)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Ray ray, float radius, out RaycastHit hitInfo, float maxDistance, int layerMask, QueryTriggerInteraction queryTriggerInteraction)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Ray ray, float radius, out RaycastHit hitInfo, float maxDistance, int layerMask)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Ray ray, float radius, out RaycastHit hitInfo, float maxDistance)
-            => throw new System.NotImplementedException("Stub");
-        public static bool SphereCast(Ray ray, float radius, out RaycastHit hitInfo)
-            => throw new System.NotImplementedException("Stub");
-    }
-
-    public struct RaycastHit
-    {
-        public float distance { get; set; }
-        public Vector3 normal { get; set; }
-        public Transform transform
-            => throw new System.NotImplementedException("Stub");
-    }
-
-    public enum QueryTriggerInteraction
-    {
+        public static bool SphereCast(UnityEngine.Vector3 origin, float radius, UnityEngine.Vector3 direction, out UnityEngine.RaycastHit hitInfo, float maxDistance, int layerMask, UnityEngine.QueryTriggerInteraction queryTriggerInteraction) { throw new System.NotImplementedException(); }
     }
 
 }
