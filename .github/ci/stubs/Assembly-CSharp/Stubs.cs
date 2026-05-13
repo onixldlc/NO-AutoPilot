@@ -59,6 +59,8 @@ public abstract class CameraBaseState
 
 public abstract class PilotBaseState
 {
+    protected ControlInputs controlInputs;
+    protected Pilot pilot;
     public abstract void EnterState(Pilot pilot);
     public abstract void FixedUpdateState(Pilot pilot);
     public abstract void LeaveState();
@@ -73,7 +75,13 @@ public abstract class NetworkSceneSingleton<T> : NetworkBehaviour
 public abstract class MapIcon : MonoBehaviour
 {
     public abstract void ClickIcon(ClickSource clickSource);
+    protected abstract Color GetColor();
+    protected abstract FactionHQ GetHQ();
     public abstract string GetInfoText();
+    protected abstract bool IsLocalPlayerAircraft();
+    protected abstract void OnDeselectIcon();
+    protected abstract void OnRemoveIcon();
+    protected abstract void OnSelectIcon();
     public abstract void UpdateIcon(float mapDisplayFactor, float mapInverseScale, Transform mapTransform, bool mapMaximized);
 }
 
@@ -222,8 +230,17 @@ public class UnitMapIcon : MapIcon
 {
     public Unit unit { get; private set; }
     public override void ClickIcon(ClickSource clickSource) { }
+    protected override Color GetColor()
+        => throw new System.NotImplementedException("Stub");
+    protected override FactionHQ GetHQ()
+        => throw new System.NotImplementedException("Stub");
     public override string GetInfoText()
         => throw new System.NotImplementedException("Stub");
+    protected override bool IsLocalPlayerAircraft()
+        => throw new System.NotImplementedException("Stub");
+    protected override void OnDeselectIcon() { }
+    protected override void OnRemoveIcon() { }
+    protected override void OnSelectIcon() { }
     public override void UpdateIcon(float mapDisplayFactor, float mapInverseScale, Transform mapTransform, bool mapMaximized) { }
 }
 
