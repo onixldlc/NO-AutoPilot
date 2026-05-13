@@ -107,7 +107,7 @@ public class FactionHQ : NetworkBehaviour
 
 public class ControlsFilter : MonoBehaviour
 {
-    public ValueTuple<bool, float[]> GetFlyByWireParameters()
+    public (bool, float[]) GetFlyByWireParameters()
         => throw new System.NotImplementedException("Stub");
     public void SetFlyByWireParameters(bool enabled, float[] parameters) { }
 }
@@ -123,7 +123,7 @@ public class UnitPart : MonoBehaviour
 
 public class Airbase : NetworkBehaviour
 {
-    public void CmdRegisterUsage(Aircraft aircraft, bool isUsing, Nullable<byte> landingRunway) { }
+    public void CmdRegisterUsage(Aircraft aircraft, bool isUsing, byte? landingRunway) { }
 }
 
 public class GLOC : MonoBehaviour
@@ -308,5 +308,9 @@ public enum PilotType
 public enum GearState
 {
     LockedRetracted
+}
+
+public enum ClickSource
+{
 }
 
