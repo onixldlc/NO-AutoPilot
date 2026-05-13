@@ -2,6 +2,8 @@
 // AUTO-GENERATED STUB by csstubgen — DO NOT EDIT
 // =============================================================================
 
+using System;
+
 namespace UnityEngine
 {
     public class Rigidbody : Component
@@ -43,7 +45,8 @@ namespace UnityEngine
     {
         public float distance { get; set; }
         public Vector3 normal { get; set; }
-        public Transform transform { get; }
+        public Transform transform
+            => throw new System.NotImplementedException("Stub");
     }
 
     public enum QueryTriggerInteraction

@@ -2,6 +2,8 @@
 // AUTO-GENERATED STUB by csstubgen — DO NOT EDIT
 // =============================================================================
 
+using System;
+
 public class WindowFunction : MulticastDelegate
 {
 }
@@ -139,7 +141,8 @@ namespace UnityEngine
 
     public class GUIStyle
     {
-        public static GUIStyle none { get; }
+        public static GUIStyle none
+            => throw new System.NotImplementedException("Stub");
         public Vector2 CalcSize(GUIContent content)
             => throw new System.NotImplementedException("Stub");
     }

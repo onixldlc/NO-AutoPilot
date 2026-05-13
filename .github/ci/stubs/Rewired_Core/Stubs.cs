@@ -2,20 +2,25 @@
 // AUTO-GENERATED STUB by csstubgen — DO NOT EDIT
 // =============================================================================
 
+using System;
 using Rewired;
 using Rewired.Utils.Classes;
 using System.Collections.Generic;
 
 public abstract class Element
 {
-    public ControllerElementIdentifier elementIdentifier { get; }
+    public ControllerElementIdentifier elementIdentifier
+        => throw new System.NotImplementedException("Stub");
 }
 
 public class ControllerHelper : CodeHelper
 {
-    public IList<Joystick> Joysticks { get; }
-    public Keyboard Keyboard { get; }
-    public Mouse Mouse { get; }
+    public IList<Joystick> Joysticks
+        => throw new System.NotImplementedException("Stub");
+    public Keyboard Keyboard
+        => throw new System.NotImplementedException("Stub");
+    public Mouse Mouse
+        => throw new System.NotImplementedException("Stub");
 }
 
 public class Button : Element
@@ -26,15 +31,19 @@ namespace Rewired
 {
     public static class ReInput
     {
-        public static ControllerHelper controllers { get; }
+        public static ControllerHelper controllers
+            => throw new System.NotImplementedException("Stub");
     }
 
     public abstract class Controller
     {
-        public int buttonCount { get; }
-        public IList<Button> Buttons { get; }
+        public int buttonCount
+            => throw new System.NotImplementedException("Stub");
+        public IList<Button> Buttons
+            => throw new System.NotImplementedException("Stub");
         public string name { get; private set; }
-        public ControllerType type { get; }
+        public ControllerType type
+            => throw new System.NotImplementedException("Stub");
         public virtual bool GetButton(int index)
             => throw new System.NotImplementedException("Stub");
         public virtual bool GetButtonDown(int index)
@@ -55,7 +64,8 @@ namespace Rewired
 
     public class ControllerElementIdentifier
     {
-        public int id { get; }
+        public int id
+            => throw new System.NotImplementedException("Stub");
         public string name { get; private set; }
     }
 

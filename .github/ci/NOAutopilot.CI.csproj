@@ -27,17 +27,7 @@
   </ItemGroup>
 
   <!-- Game-specific stubs (minimal signatures, no proprietary code) -->
-  <ItemGroup>
-    <ProjectReference Include="stubs\Assembly-CSharp\Assembly-CSharp.csproj">
-      <Private>false</Private>
-    </ProjectReference>
-    <ProjectReference Include="stubs\Mirage\Mirage.csproj">
-      <Private>false</Private>
-    </ProjectReference>
-    <ProjectReference Include="stubs\Rewired_Core\Rewired_Core.csproj">
-      <Private>false</Private>
-    </ProjectReference>
-  </ItemGroup>
+  <Import Project="stubs\Stubs.props" />
 
   <ItemGroup>
     <Reference Include="JetBrains.Annotations">

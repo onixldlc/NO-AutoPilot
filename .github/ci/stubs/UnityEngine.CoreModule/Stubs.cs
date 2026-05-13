@@ -2,6 +2,7 @@
 // AUTO-GENERATED STUB by csstubgen — DO NOT EDIT
 // =============================================================================
 
+using System;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 
@@ -57,16 +58,21 @@ namespace UnityEngine
 
     public class Time
     {
-        public static float deltaTime { get; }
+        public static float deltaTime
+            => throw new System.NotImplementedException("Stub");
         public static float fixedDeltaTime { get; set; }
-        public static float realtimeSinceStartup { get; }
-        public static float time { get; }
+        public static float realtimeSinceStartup
+            => throw new System.NotImplementedException("Stub");
+        public static float time
+            => throw new System.NotImplementedException("Stub");
     }
 
     public class Screen
     {
-        public static int height { get; }
-        public static int width { get; }
+        public static int height
+            => throw new System.NotImplementedException("Stub");
+        public static int width
+            => throw new System.NotImplementedException("Stub");
     }
 
     public class RectOffset
@@ -85,9 +91,12 @@ namespace UnityEngine
     {
         public float x;
         public float y;
-        public static Vector2 one { get; }
-        public float sqrMagnitude { get; }
-        public static Vector2 zero { get; }
+        public static Vector2 one
+            => throw new System.NotImplementedException("Stub");
+        public float sqrMagnitude
+            => throw new System.NotImplementedException("Stub");
+        public static Vector2 zero
+            => throw new System.NotImplementedException("Stub");
         public static float Distance(Vector2 a, Vector2 b)
             => throw new System.NotImplementedException("Stub");
     }
@@ -98,12 +107,18 @@ namespace UnityEngine
         public float b;
         public float g;
         public float r;
-        public static Color cyan { get; }
-        public static Color gray { get; }
-        public static Color green { get; }
-        public static Color red { get; }
-        public static Color white { get; }
-        public static Color yellow { get; }
+        public static Color cyan
+            => throw new System.NotImplementedException("Stub");
+        public static Color gray
+            => throw new System.NotImplementedException("Stub");
+        public static Color green
+            => throw new System.NotImplementedException("Stub");
+        public static Color red
+            => throw new System.NotImplementedException("Stub");
+        public static Color white
+            => throw new System.NotImplementedException("Stub");
+        public static Color yellow
+            => throw new System.NotImplementedException("Stub");
     }
 
     public struct Vector3
@@ -111,12 +126,18 @@ namespace UnityEngine
         public float x;
         public float y;
         public float z;
-        public float magnitude { get; }
-        public Vector3 normalized { get; }
-        public static Vector3 one { get; }
-        public float sqrMagnitude { get; }
-        public static Vector3 up { get; }
-        public static Vector3 zero { get; }
+        public float magnitude
+            => throw new System.NotImplementedException("Stub");
+        public Vector3 normalized
+            => throw new System.NotImplementedException("Stub");
+        public static Vector3 one
+            => throw new System.NotImplementedException("Stub");
+        public float sqrMagnitude
+            => throw new System.NotImplementedException("Stub");
+        public static Vector3 up
+            => throw new System.NotImplementedException("Stub");
+        public static Vector3 zero
+            => throw new System.NotImplementedException("Stub");
         public static float Angle(Vector3 from, Vector3 to)
             => throw new System.NotImplementedException("Stub");
         public static float Distance(Vector3 a, Vector3 b)
@@ -129,8 +150,10 @@ namespace UnityEngine
 
     public class GameObject : Object
     {
-        public bool activeSelf { get; }
-        public Transform transform { get; }
+        public bool activeSelf
+            => throw new System.NotImplementedException("Stub");
+        public Transform transform
+            => throw new System.NotImplementedException("Stub");
         public T GetComponent<T>()
             => throw new System.NotImplementedException("Stub");
         public Component GetComponent(Type type)
@@ -239,7 +262,8 @@ namespace UnityEngine
     public struct Quaternion
     {
         public Vector3 eulerAngles { get; set; }
-        public static Quaternion identity { get; }
+        public static Quaternion identity
+            => throw new System.NotImplementedException("Stub");
         public static Quaternion LookRotation(Vector3 forward, Vector3 upwards)
             => throw new System.NotImplementedException("Stub");
         public static Quaternion LookRotation(Vector3 forward)
@@ -248,8 +272,10 @@ namespace UnityEngine
 
     public class Component : Object
     {
-        public GameObject gameObject { get; }
-        public Transform transform { get; }
+        public GameObject gameObject
+            => throw new System.NotImplementedException("Stub");
+        public Transform transform
+            => throw new System.NotImplementedException("Stub");
         public Component GetComponent(Type type)
             => throw new System.NotImplementedException("Stub");
         public T GetComponent<T>()
@@ -292,7 +318,8 @@ namespace UnityEngine
         public Vector3 localScale { get; set; }
         public Transform parent { get; set; }
         public Vector3 position { get; set; }
-        public Transform root { get; }
+        public Transform root
+            => throw new System.NotImplementedException("Stub");
         public Vector3 up { get; set; }
         public Transform Find(string n)
             => throw new System.NotImplementedException("Stub");

@@ -2,6 +2,7 @@
 // AUTO-GENERATED STUB by csstubgen — DO NOT EDIT
 // =============================================================================
 
+using System;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
