@@ -8,4 +8,10 @@
     <EnableDefaultCompileItems>true</EnableDefaultCompileItems>
     <NoWarn>CS0649;CS0169;CS0414;CS0626</NoWarn>
   </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UnityEngine.CoreModule\UnityEngine.CoreModule.csproj" />
+    <ProjectReference Include="..\UnityEngine.InputLegacyModule\UnityEngine.InputLegacyModule.csproj" />
+    <ProjectReference Include="..\UnityEngine.PhysicsModule\UnityEngine.PhysicsModule.csproj" />
+    <ProjectReference Include="..\UnityEngine.UIModule\UnityEngine.UIModule.csproj" />
+  </ItemGroup>
 </Project>

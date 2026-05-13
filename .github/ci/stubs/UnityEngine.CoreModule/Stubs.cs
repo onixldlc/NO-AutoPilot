@@ -5,23 +5,26 @@
 using System;
 using System;
 using System.Collections.Generic;
-using UnityEngine;
 using UnityEngine.UI;
 
-namespace UnityEngine.CoreModule
+namespace UnityEngine
 {
-    public class ColorUtility // UnityEngine.ColorUtility
+    public class Color
+    {
+    }
+
+    public class ColorUtility
     {
         public static string ToHtmlStringRGBA(UnityEngine.Color color) { throw new System.NotImplementedException(); }
         public static bool TryParseHtmlString(string htmlString, out UnityEngine.Color color) { throw new System.NotImplementedException(); }
     }
 
-    public class Component // UnityEngine.Component
+    public class Component
     {
         public GLOC GetComponent() { throw new System.NotImplementedException(); }
     }
 
-    public class GameObject // UnityEngine.GameObject
+    public class GameObject
     {
         public void GetComponentsInChildren(bool includeInactive, System.Collections.Generic.List<UnityEngine.UI.Graphic> results) { throw new System.NotImplementedException(); }
         public GLOC GetComponent() { throw new System.NotImplementedException(); }
@@ -44,7 +47,11 @@ namespace UnityEngine.CoreModule
         public void SetActive(bool value) { throw new System.NotImplementedException(); }
     }
 
-    public class Mathf // UnityEngine.Mathf
+    public class KeyCode
+    {
+    }
+
+    public class Mathf
     {
         public static float Abs(float f) { throw new System.NotImplementedException(); }
         public static float Acos(float f) { throw new System.NotImplementedException(); }
@@ -66,47 +73,47 @@ namespace UnityEngine.CoreModule
         public static float Sqrt(float f) { throw new System.NotImplementedException(); }
     }
 
-    public class Object // UnityEngine.Object
+    public class Object
     {
         public static void Destroy(UnityEngine.Object obj) { throw new System.NotImplementedException(); }
         public static UnityEngine.GameObject Instantiate(UnityEngine.GameObject original, UnityEngine.Transform parent) { throw new System.NotImplementedException(); }
     }
 
-    public class Quaternion // UnityEngine.Quaternion
+    public class Quaternion
     {
         public static UnityEngine.Quaternion LookRotation(UnityEngine.Vector3 forward) { throw new System.NotImplementedException(); }
     }
 
-    public class Random // UnityEngine.Random
+    public class Random
     {
         public static float Range(float minInclusive, float maxInclusive) { throw new System.NotImplementedException(); }
     }
 
-    public class Rect // UnityEngine.Rect
+    public class Rect
     {
         public bool Contains(UnityEngine.Vector2 point) { throw new System.NotImplementedException(); }
     }
 
-    public class RectTransform // UnityEngine.RectTransform
+    public class RectTransform
     {
         public void GetWorldCorners(UnityEngine.Vector3[] fourCornersArray) { throw new System.NotImplementedException(); }
         public UnityEngine.Transform Find(string n) { throw new System.NotImplementedException(); }
         public void SetParent(UnityEngine.Transform parent, bool worldPositionStays) { throw new System.NotImplementedException(); }
     }
 
-    public class Transform // UnityEngine.Transform
+    public class Transform
     {
         public UnityEngine.Vector3 InverseTransformPoint(UnityEngine.Vector3 position) { throw new System.NotImplementedException(); }
         public UnityEngine.Vector3 InverseTransformDirection(UnityEngine.Vector3 direction) { throw new System.NotImplementedException(); }
         public UnityEngine.UI.Image GetComponent() { throw new System.NotImplementedException(); }
     }
 
-    public class Vector2 // UnityEngine.Vector2
+    public class Vector2
     {
         public static float Distance(UnityEngine.Vector2 a, UnityEngine.Vector2 b) { throw new System.NotImplementedException(); }
     }
 
-    public class Vector3 // UnityEngine.Vector3
+    public class Vector3
     {
         public static float Angle(UnityEngine.Vector3 from, UnityEngine.Vector3 to) { throw new System.NotImplementedException(); }
         public static float Distance(UnityEngine.Vector3 a, UnityEngine.Vector3 b) { throw new System.NotImplementedException(); }
@@ -117,3 +124,4 @@ namespace UnityEngine.CoreModule
     }
 
 }
+

@@ -4,14 +4,14 @@
 
 using System;
 using System;
-using UnityEngine;
 
-namespace UnityEngine.UIModule
+namespace UnityEngine
 {
-    public class Canvas // UnityEngine.Canvas
+    public class Canvas
     {
         public static void ForceUpdateCanvases() { throw new System.NotImplementedException(); }
         public UnityEngine.RectTransform GetComponent() { throw new System.NotImplementedException(); }
     }
 
 }
+

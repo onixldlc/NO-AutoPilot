@@ -4,14 +4,14 @@
 
 using System;
 using System;
-using UnityEngine;
 
-namespace UnityEngine.InputLegacyModule
+namespace UnityEngine
 {
-    public class Input // UnityEngine.Input
+    public class Input
     {
         public static bool GetKey(UnityEngine.KeyCode key) { throw new System.NotImplementedException(); }
         public static bool GetMouseButtonDown(int button) { throw new System.NotImplementedException(); }
     }
 
 }
+

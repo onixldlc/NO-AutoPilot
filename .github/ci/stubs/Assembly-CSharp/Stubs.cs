@@ -37,19 +37,17 @@ namespace Assembly_CSharp
         public void SetFlyByWireParameters(bool enabled, float[] parameters) { throw new System.NotImplementedException(); }
     }
 
-    public enum CursorFlags { Chat }
+    public class CursorFlags
+    {
+    }
 
     public class CursorManager
     {
         public static bool GetFlag(CursorFlags flag) { throw new System.NotImplementedException(); }
     }
 
-    public enum FactionMode { Friendly, Enemy, Neutral, Spectator }
-
     public class DynamicMap
     {
-        public static bool mapMaximized;
-        public System.Collections.Generic.List<object> selectedIcons;
         public static FactionMode GetFactionMode(FactionHQ hq, bool checkNoFactionBeforeSpectator) { throw new System.NotImplementedException(); }
         public float GetZoomLevel() { throw new System.NotImplementedException(); }
         public void SetZoomLevel(float zoomLevel) { throw new System.NotImplementedException(); }
@@ -63,18 +61,20 @@ namespace Assembly_CSharp
         public System.Collections.Generic.IEnumerable<Airbase> GetAirbases() { throw new System.NotImplementedException(); }
     }
 
-    public class FuelGauge
+    public class FactionMode
     {
-        public UnityEngine.UI.Text fuelLabel;
     }
 
     public class FlightHud
     {
-        public Aircraft aircraft;
         public static void EnableCanvas(bool enable) { throw new System.NotImplementedException(); }
-        public FuelGauge GetComponentInChildren<T>(bool includeInactive) { throw new System.NotImplementedException(); }
+        public FuelGauge GetComponentInChildren(bool includeInactive) { throw new System.NotImplementedException(); }
         public UnityEngine.Transform GetHUDCenter() { throw new System.NotImplementedException(); }
         public void SetAircraft(Aircraft aircraft) { throw new System.NotImplementedException(); }
+    }
+
+    public class FuelGauge
+    {
     }
 
     public class GLOC
@@ -84,6 +84,7 @@ namespace Assembly_CSharp
 
     public class GlobalPosition
     {
+        public UnityEngine.Vector3 AsVector3() { throw new System.NotImplementedException(); }
         public UnityEngine.Vector3 AsVector3() { throw new System.NotImplementedException(); }
     }
 
@@ -97,17 +98,14 @@ namespace Assembly_CSharp
         public static float GetSpeedOfSound(float altitude) { throw new System.NotImplementedException(); }
     }
 
-    public class PilotBaseState
-    {
-        public Pilot pilot;
-    }
-
     public class Pilot
     {
-        public Aircraft aircraft;
-        public PilotBaseState playerState;
         public UnityEngine.Vector3 GetAccel() { throw new System.NotImplementedException(); }
         public void SwitchState(PilotBaseState state) { throw new System.NotImplementedException(); }
+    }
+
+    public class PilotBaseState
+    {
     }
 
     public class UnitConverter
@@ -124,3 +122,4 @@ namespace Assembly_CSharp
     }
 
 }
+

@@ -3,12 +3,11 @@
 // =============================================================================
 
 using System;
-using Rewired.Controller;
 using System;
 
-namespace Rewired_Core
+namespace Rewired
 {
-    public class Controller // Rewired.Controller
+    public class Controller
     {
         public Rewired.Controller.Element GetElementById(int elementIdentifierId) { throw new System.NotImplementedException(); }
         public bool GetButtonDown(int index) { throw new System.NotImplementedException(); }
@@ -18,3 +17,12 @@ namespace Rewired_Core
     }
 
 }
+
+namespace Rewired.Controller
+{
+    public class Element
+    {
+    }
+
+}
+

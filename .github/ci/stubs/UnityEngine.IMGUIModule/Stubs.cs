@@ -4,17 +4,15 @@
 
 using System;
 using System;
-using UnityEngine;
-using UnityEngine.GUI;
 
-namespace UnityEngine.IMGUIModule
+namespace UnityEngine
 {
-    public class Event // UnityEngine.Event
+    public class Event
     {
         public void Use() { throw new System.NotImplementedException(); }
     }
 
-    public class GUI // UnityEngine.GUI
+    public class GUI
     {
         public static void Box(UnityEngine.Rect position, UnityEngine.GUIContent content, UnityEngine.GUIStyle style) { throw new System.NotImplementedException(); }
         public static void DragWindow(UnityEngine.Rect position) { throw new System.NotImplementedException(); }
@@ -23,7 +21,11 @@ namespace UnityEngine.IMGUIModule
         public static UnityEngine.Rect Window(int id, UnityEngine.Rect clientRect, UnityEngine.GUI.WindowFunction func, string text, UnityEngine.GUIStyle style) { throw new System.NotImplementedException(); }
     }
 
-    public class GUILayout // UnityEngine.GUILayout
+    public class GUIContent
+    {
+    }
+
+    public class GUILayout
     {
         public static void BeginHorizontal(UnityEngine.GUILayoutOption[] options) { throw new System.NotImplementedException(); }
         public static UnityEngine.Vector2 BeginScrollView(UnityEngine.Vector2 scrollPosition, bool alwaysShowHorizontal, bool alwaysShowVertical, UnityEngine.GUIStyle horizontalScrollbar, UnityEngine.GUIStyle verticalScrollbar, UnityEngine.GUILayoutOption[] options) { throw new System.NotImplementedException(); }
@@ -41,12 +43,16 @@ namespace UnityEngine.IMGUIModule
         public static UnityEngine.GUILayoutOption Width(float width) { throw new System.NotImplementedException(); }
     }
 
-    public class GUILayoutUtility // UnityEngine.GUILayoutUtility
+    public class GUILayoutOption
+    {
+    }
+
+    public class GUILayoutUtility
     {
         public static UnityEngine.Rect GetLastRect() { throw new System.NotImplementedException(); }
     }
 
-    public class GUIStyle // UnityEngine.GUIStyle
+    public class GUIStyle
     {
         public UnityEngine.Vector2 CalcSize(UnityEngine.GUIContent content) { throw new System.NotImplementedException(); }
         public UnityEngine.Vector2 CalcSize(UnityEngine.GUIContent content) { throw new System.NotImplementedException(); }
@@ -54,3 +60,12 @@ namespace UnityEngine.IMGUIModule
     }
 
 }
+
+namespace UnityEngine.GUI
+{
+    public class WindowFunction
+    {
+    }
+
+}
+

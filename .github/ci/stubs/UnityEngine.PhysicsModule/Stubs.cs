@@ -4,13 +4,25 @@
 
 using System;
 using System;
-using UnityEngine;
 
-namespace UnityEngine.PhysicsModule
+namespace UnityEngine
 {
-    public class Physics // UnityEngine.Physics
+    public class Physics
     {
         public static bool SphereCast(UnityEngine.Vector3 origin, float radius, UnityEngine.Vector3 direction, out UnityEngine.RaycastHit hitInfo, float maxDistance, int layerMask, UnityEngine.QueryTriggerInteraction queryTriggerInteraction) { throw new System.NotImplementedException(); }
     }
 
+    public class QueryTriggerInteraction
+    {
+    }
+
+    public class RaycastHit
+    {
+    }
+
+    public class Rigidbody
+    {
+    }
+
 }
+
