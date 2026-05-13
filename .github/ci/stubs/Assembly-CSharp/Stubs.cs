@@ -7,7 +7,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Assembly-CSharp
+namespace Assembly_CSharp
 {
     public class AIPilotLandingState
     {
