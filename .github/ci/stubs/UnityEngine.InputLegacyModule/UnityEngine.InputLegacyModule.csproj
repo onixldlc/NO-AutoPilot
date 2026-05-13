@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net472</TargetFramework>
-    <AssemblyName>Assembly-CSharp</AssemblyName>
+    <AssemblyName>UnityEngine.InputLegacyModule</AssemblyName>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -9,8 +9,6 @@
     <NoWarn>CS0649;CS0169;CS0414;CS0626</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mirage\Mirage.csproj" />
     <ProjectReference Include="..\UnityEngine.CoreModule\UnityEngine.CoreModule.csproj" />
-    <ProjectReference Include="..\UnityEngine.PhysicsModule\UnityEngine.PhysicsModule.csproj" />
   </ItemGroup>
 </Project>
