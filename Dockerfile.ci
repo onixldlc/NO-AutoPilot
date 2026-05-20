@@ -1,0 +1,34 @@
+FROM mcr.microsoft.com/dotnet/sdk:8.0-alpine
+
+WORKDIR /build
+
+# Create directory structure for NuGet restore caching
+RUN mkdir -p .github/ci/stubs/Assembly-CSharp \
+    && mkdir -p .github/ci/stubs/Mirage \
+    && mkdir -p .github/ci/stubs/Rewired_Core \
+    && mkdir -p .github/ci/stubs/UnityEngine.IMGUIModule \
+    && mkdir -p .github/ci/stubs/UnityEngine.InputLegacyModule \
+    && mkdir -p .github/ci/stubs/UnityEngine.PhysicsModule \
+    && mkdir -p .github/ci/stubs/UnityEngine.UIModule \
+    && mkdir -p .github/ci/stubs/UnityEngine.UI
+
+# Copy project files for NuGet restore (cached layer)
+COPY .github/ci/NuGet.config .github/ci/
+COPY .github/ci/NOAutopilot.CI.csproj .github/ci/
+COPY .github/ci/stubs/Stubs.props .github/ci/stubs/
+COPY .github/ci/stubs/Assembly-CSharp/Assembly-CSharp.csproj .github/ci/stubs/Assembly-CSharp/
+COPY .github/ci/stubs/Mirage/Mirage.csproj .github/ci/stubs/Mirage/
+COPY .github/ci/stubs/Rewired_Core/Rewired_Core.csproj .github/ci/stubs/Rewired_Core/
+COPY .github/ci/stubs/UnityEngine.IMGUIModule/UnityEngine.IMGUIModule.csproj .github/ci/stubs/UnityEngine.IMGUIModule/
+COPY .github/ci/stubs/UnityEngine.InputLegacyModule/UnityEngine.InputLegacyModule.csproj .github/ci/stubs/UnityEngine.InputLegacyModule/
+COPY .github/ci/stubs/UnityEngine.PhysicsModule/UnityEngine.PhysicsModule.csproj .github/ci/stubs/UnityEngine.PhysicsModule/
+COPY .github/ci/stubs/UnityEngine.UIModule/UnityEngine.UIModule.csproj .github/ci/stubs/UnityEngine.UIModule/
+COPY .github/ci/stubs/UnityEngine.UI/UnityEngine.UI.csproj .github/ci/stubs/UnityEngine.UI/
+
+RUN dotnet restore .github/ci/NOAutopilot.CI.csproj
+
+# Copy source and stubs (changes here don't bust restore cache)
+COPY Core/ Core/
+COPY .github/ci/stubs/ .github/ci/stubs/
+
+RUN dotnet build .github/ci/NOAutopilot.CI.csproj -c Release --no-restore
