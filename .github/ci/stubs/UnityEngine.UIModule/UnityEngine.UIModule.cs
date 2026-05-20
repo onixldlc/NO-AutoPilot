@@ -1,5 +1,5 @@
 public sealed class Canvas : Behaviour
 {
-	public static void ForceUpdateCanvases();
+	public static void ForceUpdateCanvases() => throw null;
 
 }

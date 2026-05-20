@@ -7,6 +7,6 @@ public class Input
 	[NativeThrows]
 	public static extern bool GetMouseButtonDown(int button);
 
-	public static bool GetKey(string name);
+	public static bool GetKey(string name) => throw null;
 
 }

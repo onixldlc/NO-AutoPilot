@@ -5,57 +5,57 @@ using UnityEngine;
 
 public static class CursorManager
 {
-	public static bool GetFlag(CursorFlags flag);
+	public static bool GetFlag(CursorFlags flag) => throw null;
 
 }
 public class Pilot : MonoBehaviour, IDamageable
 {
-	public void SwitchState(PilotBaseState state);
+	public void SwitchState(PilotBaseState state) => throw null;
 
-	public Vector3 GetAccel();
+	public Vector3 GetAccel() => throw null;
 
 }
 public class FactionHQ : NetworkBehaviour
 {
-	public IEnumerable<Airbase> GetAirbases();
+	public IEnumerable<Airbase> GetAirbases() => throw null;
 
 }
 public static class GlobalPositionExtensions
 {
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static GlobalPosition GlobalPosition(this Transform transform);
+	public static GlobalPosition GlobalPosition(this Transform transform) => throw null;
 
 }
 public class LevelInfo : NetworkSceneSingleton<LevelInfo>
 {
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static float GetSpeedOfSound(float altitude);
+	public static float GetSpeedOfSound(float altitude) => throw null;
 
 }
 public static class UnitConverter
 {
-	public static string AltitudeReading(float altitude);
+	public static string AltitudeReading(float altitude) => throw null;
 
-	public static string ClimbRateReading(float speed);
+	public static string ClimbRateReading(float speed) => throw null;
 
-	public static string SpeedReading(float speed);
+	public static string SpeedReading(float speed) => throw null;
 
-	public static string DistanceReading(float distance);
+	public static string DistanceReading(float distance) => throw null;
 
 }
 public class DynamicMap : SceneSingleton<DynamicMap>
 {
-	public void CenterMap();
+	public void CenterMap() => throw null;
 
-	public float GetZoomLevel();
+	public float GetZoomLevel() => throw null;
 
-	public void SetZoomLevel(float zoomLevel);
+	public void SetZoomLevel(float zoomLevel) => throw null;
 
-	private void UpdateMap();
+	private void UpdateMap() => throw null;
 
-	public bool TryGetCursorCoordinates(out GlobalPosition position);
+	public bool TryGetCursorCoordinates(out GlobalPosition position) => throw null;
 
-	public static FactionMode GetFactionMode(FactionHQ hq = null, bool checkNoFactionBeforeSpectator = false);
+	public static FactionMode GetFactionMode(FactionHQ hq = null, bool checkNoFactionBeforeSpectator = false) => throw null;
 
 }
 public struct GlobalPosition : IEquatable<GlobalPosition>
@@ -67,14 +67,14 @@ public struct GlobalPosition : IEquatable<GlobalPosition>
 	[FieldOffset(8)]
 	public float z;
 
-	public readonly Vector3 AsVector3();
+	public readonly Vector3 AsVector3() => throw null;
 
 }
 public class ControlsFilter : MonoBehaviour
 {
-	public (bool, float[]) GetFlyByWireParameters();
+	public (bool, float[]) GetFlyByWireParameters() => throw null;
 
-	public void SetFlyByWireParameters(bool enabled, float[] parameters);
+	public void SetFlyByWireParameters(bool enabled, float[] parameters) => throw null;
 
 }
 public enum CursorFlags
@@ -92,7 +92,7 @@ public enum CursorFlags
 }
 public class Aircraft : Unit, IRadarReturn, IRearmable, IRefuelable
 {
-	public float GetFuelLevel();
+	public float GetFuelLevel() => throw null;
 
 }
 public enum FactionMode
@@ -104,11 +104,11 @@ public enum FactionMode
 }
 public class FlightHud : SceneSingleton<FlightHud>
 {
-	public Transform GetHUDCenter();
+	public Transform GetHUDCenter() => throw null;
 
-	public void SetAircraft(Aircraft aircraft);
+	public void SetAircraft(Aircraft aircraft) => throw null;
 
-	public static void EnableCanvas(bool enable);
+	public static void EnableCanvas(bool enable) => throw null;
 
 }
 public abstract class PilotBaseState
@@ -116,28 +116,40 @@ public abstract class PilotBaseState
 }
 public class AIPilotLandingState : PilotBaseState
 {
-	private void SearchBestAirbase();
+	private void SearchBestAirbase() => throw null;
 
 }
 public class GLOC : MonoBehaviour
 {
-	public void ResetGLOC();
+	public void ResetGLOC() => throw null;
 
 }
 public sealed class Airbase : NetworkBehaviour, IEditorSelectable, ICapturable
 {
 	[RateLimit(Refill = 5, MaxTokens = 30, Penalty = 2)]
 	[ServerRpc(requireAuthority = false)]
-	public void CmdRegisterUsage(Aircraft aircraft, bool isUsing, byte? landingRunway);
+	public void CmdRegisterUsage(Aircraft aircraft, bool isUsing, byte? landingRunway) => throw null;
 
 }
 public class WeaponManager : MonoBehaviour
 {
-	public void Fire();
+	public void Fire() => throw null;
 
 }
 public class AIPilotShortLandingState : PilotBaseState
 {
-	private void SearchBestAirbase();
+	private void SearchBestAirbase() => throw null;
 
 }
+public interface IDamageable { }
+public class NetworkBehaviour { }
+public class NetworkSceneSingleton<T> { }
+public class SceneSingleton<T> { }
+public interface IEquatable<T> { }
+public class Unit { }
+public interface IRadarReturn { }
+public interface IRearmable { }
+public interface IRefuelable { }
+public interface IEditorSelectable { }
+public interface ICapturable { }
+namespace Mirage { }

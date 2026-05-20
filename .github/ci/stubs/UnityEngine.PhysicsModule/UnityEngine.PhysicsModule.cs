@@ -3,7 +3,7 @@ using UnityEngine.Internal;
 public class Physics
 {
 	[ExcludeFromDocs]
-	public static bool SphereCast(Ray ray, float radius, out RaycastHit hitInfo);
+	public static bool SphereCast(Ray ray, float radius, out RaycastHit hitInfo) => throw null;
 
 }
 public struct RaycastHit
