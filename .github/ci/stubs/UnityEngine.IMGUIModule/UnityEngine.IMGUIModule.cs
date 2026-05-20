@@ -3,8 +3,6 @@ using UnityEngine.Bindings;
 
 public class GUI
 {
-	[MethodImpl(MethodImplOptions.InternalCall)]
-	[FreeFunction("GetGUIState().FocusKeyboardControl")]
 	public static extern void FocusControl(string name);
 
 	public static Rect Window(int id, Rect clientRect, WindowFunction func, GUIContent title, GUIStyle style) => throw null;

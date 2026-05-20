@@ -22,13 +22,11 @@ public class FactionHQ : NetworkBehaviour
 }
 public static class GlobalPositionExtensions
 {
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static GlobalPosition GlobalPosition(this Transform transform) => throw null;
 
 }
 public class LevelInfo : NetworkSceneSingleton<LevelInfo>
 {
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static float GetSpeedOfSound(float altitude) => throw null;
 
 }
@@ -60,14 +58,8 @@ public class DynamicMap : SceneSingleton<DynamicMap>
 }
 public struct GlobalPosition : IEquatable<GlobalPosition>
 {
-	[FieldOffset(0)]
-	public float x;
-	[FieldOffset(4)]
-	public float y;
-	[FieldOffset(8)]
-	public float z;
 
-	public readonly Vector3 AsVector3() => throw null;
+	public Vector3 AsVector3() => throw null;
 
 }
 public class ControlsFilter : MonoBehaviour
@@ -126,8 +118,6 @@ public class GLOC : MonoBehaviour
 }
 public sealed class Airbase : NetworkBehaviour, IEditorSelectable, ICapturable
 {
-	[RateLimit(Refill = 5, MaxTokens = 30, Penalty = 2)]
-	[ServerRpc(requireAuthority = false)]
 	public void CmdRegisterUsage(Aircraft aircraft, bool isUsing, byte? landingRunway) => throw null;
 
 }
@@ -145,7 +135,6 @@ public interface IDamageable { }
 public class NetworkBehaviour { }
 public class NetworkSceneSingleton<T> { }
 public class SceneSingleton<T> { }
-public interface IEquatable<T> { }
 public class Unit { }
 public interface IRadarReturn { }
 public interface IRearmable { }
