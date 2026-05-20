@@ -19,5 +19,8 @@
     <ProjectReference Include="$(MSBuildThisFileDirectory)UnityEngine.UIModule\UnityEngine.UIModule.csproj">
       <Private>false</Private>
     </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)UnityEngine.UI\UnityEngine.UI.csproj">
+      <Private>false</Private>
+    </ProjectReference>
   </ItemGroup>
 </Project>
