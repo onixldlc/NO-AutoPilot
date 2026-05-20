@@ -4,10 +4,10 @@ namespace Rewired
 {
 	public abstract class Controller
 	{
-		public string name;
-		public ControllerType type;
-		public int buttonCount;
-		public Button[] Buttons;
+		public string name { get; }
+		public ControllerType type { get; }
+		public int buttonCount { get; }
+		public Button[] Buttons { get; }
 
 		public virtual Element GetElementById(int elementIdentifierId) => throw null;
 
@@ -19,18 +19,18 @@ namespace Rewired
 
 		public abstract class Element
 		{
+			public ControllerElementIdentifier elementIdentifier { get; }
 		}
 
 		public class Button : Element
 		{
-			public ElementIdentifier elementIdentifier;
 		}
 	}
 
-	public class ElementIdentifier
+	public class ControllerElementIdentifier
 	{
-		public string name;
-		public int id;
+		public string name { get; }
+		public int id { get; }
 	}
 
 	public enum ControllerType
@@ -55,13 +55,13 @@ namespace Rewired
 
 	public static class ReInput
 	{
-		public static ControllerHelper controllers;
-	}
+		public static ControllerHelper controllers { get; }
 
-	public class ControllerHelper
-	{
-		public IEnumerable<Joystick> Joysticks;
-		public Mouse Mouse;
-		public Keyboard Keyboard;
+		public sealed class ControllerHelper
+		{
+			public IList<Joystick> Joysticks { get; }
+			public Mouse Mouse { get; }
+			public Keyboard Keyboard { get; }
+		}
 	}
 }

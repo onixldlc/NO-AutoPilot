@@ -4,8 +4,7 @@ namespace UnityEngine.UI
 {
 	public class Graphic : MonoBehaviour
 	{
-		public Color color;
-		public bool enabled;
+		public Color color { get; set; }
 	}
 
 	public class MaskableGraphic : Graphic
@@ -14,15 +13,15 @@ namespace UnityEngine.UI
 
 	public class Text : MaskableGraphic
 	{
-		public string text;
-		public int fontSize;
-		public FontStyle fontStyle;
-		public bool supportRichText;
-		public bool resizeTextForBestFit;
-		public TextAnchor alignment;
-		public HorizontalWrapMode horizontalOverflow;
-		public VerticalWrapMode verticalOverflow;
-		public bool richText;
+		public string text { get; set; }
+		public int fontSize { get; set; }
+		public FontStyle fontStyle { get; set; }
+		public bool supportRichText { get; set; }
+		public bool resizeTextForBestFit { get; set; }
+		public TextAnchor alignment { get; set; }
+		public HorizontalWrapMode horizontalOverflow { get; set; }
+		public VerticalWrapMode verticalOverflow { get; set; }
+		public bool richText { get; set; }
 	}
 
 	public class Image : MaskableGraphic
@@ -35,11 +34,9 @@ namespace UnityEngine.UI
 
 	public class Mask : MonoBehaviour
 	{
-		public bool enabled;
 	}
 
 	public class RectMask2D : MonoBehaviour
 	{
-		public bool enabled;
 	}
 }

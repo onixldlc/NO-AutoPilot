@@ -4,6 +4,9 @@
     <ProjectReference Include="$(MSBuildThisFileDirectory)Assembly-CSharp\Assembly-CSharp.csproj">
       <Private>false</Private>
     </ProjectReference>
+    <ProjectReference Include="$(MSBuildThisFileDirectory)Mirage\Mirage.csproj">
+      <Private>false</Private>
+    </ProjectReference>
     <ProjectReference Include="$(MSBuildThisFileDirectory)Rewired_Core\Rewired_Core.csproj">
       <Private>false</Private>
     </ProjectReference>

@@ -10,23 +10,25 @@ public sealed class GUILayoutOption
 
 public class GUISkin
 {
-	public GUIStyle label;
-	public GUIStyle button;
-	public GUIStyle textField;
-	public GUIStyle toggle;
-	public GUIStyle box;
-	public GUIStyle window;
+	public GUIStyle label { get; set; }
+	public GUIStyle button { get; set; }
+	public GUIStyle textField { get; set; }
+	public GUIStyle toggle { get; set; }
+	public GUIStyle box { get; set; }
+	public GUIStyle window { get; set; }
 }
 
 public class GUI
 {
-	public static GUISkin skin;
-	public static Color color;
-	public static Color backgroundColor;
-	public static int depth;
-	public static string tooltip;
+	public static GUISkin skin { get; set; }
+	public static Color color { get; set; }
+	public static Color backgroundColor { get; set; }
+	public static int depth { get; set; }
+	public static string tooltip { get; set; }
 
 	public static extern void FocusControl(string name);
+
+	public static Rect ModalWindow(int id, Rect clientRect, WindowFunction func, string title) => throw null;
 
 	public static Rect Window(int id, Rect clientRect, WindowFunction func, GUIContent title, GUIStyle style) => throw null;
 	public static Rect Window(int id, Rect clientRect, WindowFunction func, string title) => throw null;
@@ -44,12 +46,12 @@ public class GUI
 }
 public sealed class Event
 {
-	public static Event current;
+	public static Event current { get; set; }
 
-	public EventType type;
-	public KeyCode keyCode;
-	public Vector2 mousePosition;
-	public Vector2 delta;
+	public EventType type { get; set; }
+	public KeyCode keyCode { get; set; }
+	public Vector2 mousePosition { get; set; }
+	public Vector2 delta { get; set; }
 
 	public void Use() => throw null;
 
@@ -107,16 +109,16 @@ public class GUILayout
 }
 public sealed class GUIStyle
 {
-	public TextAnchor alignment;
-	public bool richText;
-	public RectOffset padding;
-	public RectOffset margin;
-	public int fontSize;
-	public FontStyle fontStyle;
-	public bool wordWrap;
-	public GUIStyleState normal;
+	public TextAnchor alignment { get; set; }
+	public bool richText { get; set; }
+	public RectOffset padding { get; set; }
+	public RectOffset margin { get; set; }
+	public int fontSize { get; set; }
+	public FontStyle fontStyle { get; set; }
+	public bool wordWrap { get; set; }
+	public GUIStyleState normal { get; set; }
 
-	public static GUIStyle none;
+	public static GUIStyle none { get; }
 
 	public GUIStyle() { }
 	public GUIStyle(GUIStyle other) => throw null;
@@ -126,7 +128,7 @@ public sealed class GUIStyle
 }
 public class GUIStyleState
 {
-	public Color textColor;
+	public Color textColor { get; set; }
 }
 public class GUILayoutUtility
 {
@@ -135,8 +137,8 @@ public class GUILayoutUtility
 }
 public class GUIContent
 {
-	public string text;
-	public string tooltip;
+	public string text { get; set; }
+	public string tooltip { get; set; }
 
 	public GUIContent() { }
 	public GUIContent(string text) => throw null;

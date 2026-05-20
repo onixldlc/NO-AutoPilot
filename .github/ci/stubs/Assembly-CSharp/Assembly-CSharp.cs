@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Mirage;
@@ -35,14 +34,14 @@ public class FactionHQ : NetworkBehaviour
 
 public static class GlobalPositionExtensions
 {
+	public static GlobalPosition GlobalPosition(this Unit unit) => throw null;
 	public static GlobalPosition GlobalPosition(this Transform transform) => throw null;
-	public static GlobalPosition GlobalPosition(this Component component) => throw null;
+	public static float GlobalY(this Vector3 v) => throw null;
+	public static GlobalPosition ToGlobalPosition(this Vector3 v) => throw null;
 }
 
 public static class Vector3Extensions
 {
-	public static float GlobalY(this Vector3 v) => throw null;
-	public static GlobalPosition ToGlobalPosition(this Vector3 v) => throw null;
 }
 
 public class LevelInfo : NetworkSceneSingleton<LevelInfo>
@@ -60,7 +59,7 @@ public static class UnitConverter
 
 public class DynamicMap : SceneSingleton<DynamicMap>
 {
-	public static bool mapMaximized;
+	public static bool mapMaximized { get; }
 	public float mapScaleMinimized;
 	public float mapScaleCurrent;
 	public float mapDimension;
@@ -114,21 +113,23 @@ public enum CursorFlags
 	EmptyScene = 0x100
 }
 
-public class Cockpit : MonoBehaviour
+public class UnitPart : MonoBehaviour, IDamageable
 {
 	public Rigidbody rb;
 }
 
+public class Weapon : MonoBehaviour
+{
+}
+
 public class Aircraft : Unit, IRadarReturn, IRearmable, IRefuelable
 {
-	public Cockpit cockpit;
+	public UnitPart cockpit;
 	public ControlsFilter controlsFilter;
 	public float fuelCapacity;
 	public LandingGear.GearState gearState;
 	public Pilot[] pilots;
 	public PowerSupply powerSupply;
-	public float radarAlt;
-	public float speed;
 	public WeaponManager weaponManager;
 
 	public float GetFuelLevel() => throw null;
@@ -154,6 +155,7 @@ public class FlightHud : SceneSingleton<FlightHud>
 public abstract class PilotBaseState
 {
 	public Pilot pilot;
+	public ControlInputs controlInputs;
 
 	public virtual void FixedUpdateState() => throw null;
 	public virtual void CheckApproachParameters() => throw null;
@@ -161,7 +163,7 @@ public abstract class PilotBaseState
 
 public class AIPilotLandingState : PilotBaseState
 {
-	public Airbase runwayUsage;
+	public Airbase.Runway.RunwayUsage runwayUsage;
 	public bool touchedDown;
 
 	public void SearchBestAirbase() => throw null;
@@ -175,30 +177,35 @@ public class GLOC : MonoBehaviour
 	public void ResetGLOC() => throw null;
 }
 
-public class Runway
-{
-	public Airbase airbase;
-}
-
 public sealed class Airbase : NetworkBehaviour, IEditorSelectable, ICapturable
 {
-	public bool IsClientOnly;
-	public Runway Runway;
+	public Runway[] runways;
 
 	public void CmdRegisterUsage(Aircraft aircraft, bool isUsing, byte? landingRunway) => throw null;
+
+	public class Runway
+	{
+		public Airbase airbase;
+
+		public readonly struct RunwayUsage
+		{
+			public readonly Runway Runway;
+			public readonly bool Reverse;
+		}
+	}
 }
 
 public class WeaponManager : MonoBehaviour
 {
 	public WeaponStation currentWeaponStation;
-	public IList targetList;
+	public List<Unit> targetList;
 
 	public void Fire() => throw null;
 }
 
-public class WeaponStation : MonoBehaviour
+public class WeaponStation
 {
-	public IList Weapons;
+	public List<Weapon> Weapons;
 }
 
 public class JammingPod : MonoBehaviour
@@ -213,7 +220,7 @@ public class PowerSupply : MonoBehaviour
 
 public class AIPilotShortLandingState : PilotBaseState
 {
-	public Airbase runwayUsage;
+	public Airbase.Runway.RunwayUsage runwayUsage;
 	public bool touchedDown;
 
 	public void SearchBestAirbase() => throw null;
@@ -227,7 +234,6 @@ public class AIPilotTaxiState : PilotBaseState
 public class PilotPlayerState : PilotBaseState
 {
 	public GLOC gloc;
-	public ControlInputs controlInputs;
 
 	public void LeaveState() => throw null;
 	public void EnterState() => throw null;
@@ -260,7 +266,7 @@ public class MapIcon : MonoBehaviour
 
 public class UnitMapIcon : MapIcon
 {
-	public Unit unit;
+	public Unit unit { get; }
 }
 
 public class CombatHUD : SceneSingleton<CombatHUD>
@@ -270,10 +276,13 @@ public class CombatHUD : SceneSingleton<CombatHUD>
 	public void SetAircraft(Aircraft aircraft) => throw null;
 }
 
+public class CameraBaseState { }
+public class CameraCockpitState : CameraBaseState { }
+
 public class CameraStateManager : SceneSingleton<CameraStateManager>
 {
-	public object currentState;
-	public object cockpitState;
+	public CameraBaseState currentState { get; }
+	public CameraCockpitState cockpitState;
 }
 
 public class Building : Unit
@@ -284,10 +293,11 @@ public static class LandingGear
 {
 	public enum GearState
 	{
+		Uninitialized,
 		LockedRetracted,
-		Deploying,
-		LockedDeployed,
-		Retracting
+		LockedExtended,
+		Retracting,
+		Extending
 	}
 }
 
@@ -308,28 +318,13 @@ public class NetworkSceneSingleton<T> : MonoBehaviour where T : class { public s
 public class SceneSingleton<T> : MonoBehaviour where T : class { public static T i; }
 public class Unit : MonoBehaviour
 {
-	public FactionHQ NetworkHQ;
+	public FactionHQ NetworkHQ { get; set; }
 	public bool disabled;
+	public float radarAlt;
+	public float speed;
 }
 public interface IRadarReturn { }
 public interface IRearmable { }
 public interface IRefuelable { }
 public interface IEditorSelectable { }
 public interface ICapturable { }
-namespace Mirage
-{
-	public class NetworkBehaviour : MonoBehaviour { }
-	public class NetworkClient : MonoBehaviour
-	{
-		public bool Active;
-		public bool IsHost;
-	}
-	public class NetworkServer : MonoBehaviour
-	{
-		public bool Active;
-		public IList AllPlayers;
-	}
-	public class NetworkPlayer
-	{
-	}
-}

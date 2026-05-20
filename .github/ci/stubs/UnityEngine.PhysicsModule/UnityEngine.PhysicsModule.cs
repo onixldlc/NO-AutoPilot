@@ -12,8 +12,8 @@ public class Physics
 }
 public struct RaycastHit
 {
-	public float distance;
-	public Vector3 normal;
-	public Transform transform;
-	public Vector3 point;
+	public float distance { get; set; }
+	public Vector3 normal { get; set; }
+	public Transform transform { get; }
+	public Vector3 point { get; set; }
 }
